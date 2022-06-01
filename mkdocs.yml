@@ -1,14 +1,52 @@
-site_name: 'Pi-hole documentation'
-site_url: 'https://docs.pi-hole.net/'
-repo_url: 'https://github.com/pi-hole/pi-hole'
+site_name: 'MATSim'
+site_url: 'https://matsim.org/'
+repo_url: 'https://github.com/matsim-org/jekyll-website'
 edit_uri: '../docs/blob/master/docs/'
-copyright: 
 remote_branch: gh-pages
+copyright:
+
+nav:
+  - Overview: index.md
+  - Tutorials:
+      - Quick start: tutorials/general.md
+  - For users:
+      - 'User Guide'
+      - Extensions
+      - MATSim Book
+      - 'Q & A'
+      - Community pages
+  - Developer guide:
+      - Setting up your dev environment:
+          - IDE configuration: devguide/ide-configuration.md
+          - Java: devguide/java.md
+          - Development environment: devguide/development-environment.md
+          - Eclipse: devguide/eclipse/index.md
+          - Eclipse JDK: devguide/eclipse/jdk.md
+          - Proxy configuration: devguide/proxy-configuration.md
+      - MATSim Coding Conventions:
+          - Conventions: devguide/conventions.md
+          - Naming conventions: devguide/naming-conventions.md
+          - Configuration conventions: devguide/configuration-conventions.md
+          - Data in source repository: devguide/data-in-source-repository.md
+          - Documenting your code: devguide/documenting-your-code.md
+          - Commit rules: devguide/commit-rules.md
+          - Composition vs inheritance: devguide/prefer-composition-and-delegation-over-inheritance.md
+          - Using Generics: devguide/using-generics.md
+      - Builds:
+          - Build a release: devguide/build-release.md
+          - Custom GUI: devguide/custom-gui.md
+      - API Documentation
+      - Issue Tracker
+      - Build Server
+      - MATSim Community Pages
+  - FAQ: main/faq.md
+  - Community Projects: main/projects.md
+
 theme:
   name: 'material'
   custom_dir: overrides
-#  icon:
-#    repo: fontawesome/brands/github-alt
+  #  icon:
+  #    repo: fontawesome/brands/github-alt
   favicon: 'images/favicon.ico'
   logo: 'images/logo.svg'
   language: 'en'
@@ -22,9 +60,8 @@ theme:
     - search.highlight
     - search.share
   palette:
-
     # Light mode
-    - media: "(prefers-color-scheme: light)"
+    - media: '(prefers-color-scheme: light)'
       scheme: default
       primary: indigo
       accent: indigo
@@ -33,7 +70,7 @@ theme:
         name: Switch to dark mode
 
     # Dark mode
-    - media: "(prefers-color-scheme: dark)"
+    - media: '(prefers-color-scheme: dark)'
       scheme: slate
       primary: indigo
       accent: indigo
@@ -78,116 +115,13 @@ markdown_extensions:
   # (https://squidfunk.github.io/mkdocs-material/extensions/metadata/)
   - meta
 
-nav:
-  - Overview: index.md
-  - 'About Pi-hole':
-    - 'Contact Us': main/contact.md
-    - 'Pi-hole Origins': main/origins.md
-    - 'On the Web': main/coverage.md
-  - 'Getting Started':
-    - 'Prerequisites': main/prerequisites.md
-    - 'Installation': main/basic-install.md
-    - 'Post-Install': main/post-install.md
-    - 'Updating': main/update.md
-    - 'Uninstalling': main/uninstall.md
-  - 'Pi-hole Core':
-    - 'The &nbsp<samp>pihole</samp>&nbsp command': core/pihole-command.md
-  - 'Databases':
-    - 'Overview': database/index.md
-    - 'Query database': database/ftl.md
-    - 'Domain database':
-      - 'Overview': database/gravity/index.md
-      - 'Group management': database/gravity/groups.md
-      - 'Examples': database/gravity/example.md
-      - 'Database recovery': database/gravity/recovery.md
-  - 'FTLDNS':
-    - 'Overview': ftldns/index.md
-    - 'Configuration': ftldns/configfile.md
-    - 'Interfaces': ftldns/interfaces.md
-    - 'DNS resolver': ftldns/dns-resolver.md
-    - 'DNS cache': ftldns/dns-cache.md
-    - 'Blocking mode': ftldns/blockingmode.md
-    - 'Privacy levels': ftldns/privacylevels.md
-    - 'Compatibility': ftldns/compatibility.md
-    - 'dnsmasq warnings': ftldns/dnsmasq_warn.md
-    - 'Advanced':
-        - 'Install from source': ftldns/compile.md
-        - 'Telnet API': ftldns/telnet-api.md
-        - 'Signals': 'ftldns/signals.md'
-        - 'Cache dump': ftldns/cache_dump.md
-        - 'Packet dump': ftldns/package_dump.md
-        - 'Debugging':
-            - 'gdb': ftldns/debugging.md
-            - 'valgrind': ftldns/valgrind.md
-        - 'In-depth manual': ftldns/in-depth.md
-  - 'RegEx blocking':
-    - "Overview": regex/overview.md
-    - "Testing": regex/testmode.md
-    - "Tutorial": regex/tutorial.md
-    - "Pi-hole extensions": regex/pi-hole.md
-    - "Approximate matching": regex/approximate.md
-  - 'Docker':
-    - 'DHCP': docker/DHCP.md
-  - 'Contributing':
-    - 'Contributing on GitHub': guides/github/contributing.md
-    - 'Developer Certificate of Origin (DCO)': guides/github/dco.md
-    - 'How to sign-off commits': guides/github/how-to-signoff.md
-    - 'How to fork and rebase': guides/github/how-to-fork-rebase.md
-  - 'Guides':
-    - 'DNS':
-      - 'unbound': guides/dns/unbound.md
-      - 'cloudflared (DoH)': guides/dns/cloudflared.md
-      - 'Upstream DNS Providers': guides/dns/upstream-dns-providers.md
-    - 'VPN':
-      - 'WireGuard':
-        - 'Overview': guides/vpn/wireguard/overview.md
-        - 'Concept': guides/vpn/wireguard/concept.md
-        - 'Install server': guides/vpn/wireguard/server.md
-        - 'Add client(s)': guides/vpn/wireguard/client.md
-        - 'Optional extra features':
-          - 'Make local devices accessible': guides/vpn/wireguard/internal.md
-          - 'Tunnel all Internet traffic': guides/vpn/wireguard/route-everything.md
-        - 'Troubleshooting': guides/vpn/wireguard/faq.md
-      - 'OpenVPN':
-        - 'Overview': guides/vpn/openvpn/overview.md
-        - 'Installation': guides/vpn/openvpn/installation.md
-        - 'Setup OpenVPN Server': guides/vpn/openvpn/setup-openvpn-server.md
-        - 'Firewall Configuration': guides/vpn/openvpn/firewall.md
-        - 'Connecting clients':
-          - 'General': guides/vpn/openvpn/clients.md
-          - 'Android': guides/vpn/openvpn/android-client.md
-        - 'Optional: Only route DNS via VPN': guides/vpn/openvpn/only-dns-via-vpn.md
-        - 'Optional: Dual operation: LAN & VPN at the same time': guides/vpn/openvpn/dual-operation.md
-        - 'Optional: Full and DNS-only': guides/vpn/openvpn/dual-VPN.md
-        - 'Optional: Dynamic DNS': guides/vpn/openvpn/dynDNS.md
-        - 'Troubleshooting': guides/vpn/openvpn/troubleshooting.md
-    - 'Misc':
-      - 'Benchmarking': guides/misc/benchmark.md
-      - 'Tor & Pi-hole':
-        - 'Overview': guides/misc/tor/overview.md
-        - 'Basic Setup': guides/misc/tor/setup.md
-        - 'Using Tor': guides/misc/tor/using-tor.md
-        - 'Performance and other issues': guides/misc/tor/performance-issues.md
-        - 'Using DNSSEC': guides/misc/tor/dnssec.md
-      - 'Whitelist and Blacklist editing': guides/misc/whitelist-blacklist.md
-    - 'Web server':
-      - 'NGINX': guides/webserver/nginx.md
-      - 'Caddy': guides/webserver/caddy.md
-      - 'Traefik (not in Docker)': guides/webserver/traefik-nodocker.md
-  - 'Router setup':
-    - 'Fritz!Box (EN)': routers/fritzbox.md
-    - 'Fritz!Box (DE)': routers/fritzbox-de.md
-    - 'ASUS router': routers/asus.md
-  - 'FAQ': main/faq.md
-  - 'Community Projects': main/projects.md
-
 extra:
   social:
     - icon: fontawesome/solid/earth-americas
-      link: https://pi-hole.net/
+      link: https://matsim.org/
       name: Website
     - icon: fontawesome/brands/github
-      link: https://github.com/pi-hole
+      link: https://github.com/matsim-org
       name: GitHub
 
 extra_css:
@@ -201,30 +135,3 @@ plugins:
         'ftldns/database.md': database/index.md
         'main/presentations.md': index.md
         'main/prerequesites.md': main/prerequisites.md
-        'guides/unbound.md': guides/dns/unbound.md
-        'guides/upstream-dns-providers.md': guides/dns/upstream-dns-providers.md
-        'guides/dns-over-https.md': guides/dns/cloudflared.md
-        'guides/vpn/overview.md': guides/vpn/openvpn/overview.md
-        'guides/vpn/installation.md': guides/vpn/openvpn/installation.md
-        'guides/vpn/setup-openvpn-server.md': guides/vpn/openvpn/setup-openvpn-server.md
-        'guides/vpn/firewall.md': guides/vpn/openvpn/firewall.md
-        'guides/vpn/clients.md': guides/vpn/openvpn/clients.md
-        'guides/vpn/android-client.md': guides/vpn/openvpn/android-client.md
-        'guides/vpn/only-dns-via-vpn.md': guides/vpn/openvpn/only-dns-via-vpn.md
-        'guides/vpn/dual-operation.md': guides/vpn/openvpn/dual-operation.md
-        'guides/vpn/dual-VPN.md': guides/vpn/openvpn/dual-VPN.md
-        'guides/vpn/dynDNS.md': guides/vpn/openvpn/dynDNS.md
-        'guides/vpn/troubleshooting.md': guides/vpn/openvpn/troubleshooting.md
-        'guides/benchmark.md': guides/misc/benchmark.md
-        'guides/tor/overview.md': guides/misc/tor/overview.md
-        'guides/tor/setup.md': guides/misc/tor/setup.md
-        'guides/tor/using-tor.md': guides/misc/tor/using-tor.md
-        'guides/tor/performance-issues.md': guides/misc/tor/performance-issues.md
-        'guides/tor/dnssec.md': guides/misc/tor/dnssec.md
-        'guides/whitelist-blacklist.md': guides/misc/whitelist-blacklist.md
-        'guides/nginx-configuration.md': 'guides/webserver/nginx.md'
-        'guides/caddy-configuration.md': 'guides/webserver/caddy.md'
-        'guides/traefik-configuration-nodocker.md': 'guides/webserver/traefik-nodocker.md'
-        'ftldns/regex/index.md': regex/overview.md
-        'ftldns/regex/overview.md': regex/overview.md
-        'ftldns/regex/tutorial.md': regex/tutorial.md

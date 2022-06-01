@@ -1,61 +1,115 @@
----
-title: Overview of Pi-hole
-description: Brief overview of Pi-hole
-last_updated: Thur May 02 01:00:00 2019 UTC
----
+![MATSim Logo](/images/matsim-logo.png)
 
-<p class="text-center">
-    <a href="https://pi-hole.net/">
-        <img src="https://pi-hole.github.io/graphics/Vortex/Vortex_with_Wordmark.svg" width="150" height="260" alt="Pi-hole">
-    </a>
-    <br>
-    <strong>Network-wide ad blocking via your own Linux hardware</strong>
-</p>
+<div class="row">
+  <div class="col-md-12 text-left">
+    <div class="col-md-4 text-left section-thumb">
+      <h3>
+        <a href="/downloads/">
+          Install
+        </a>
+      </h3>
+      <span class="pull-left">
+        <a href="downloads">
+          <i class="fa fa-cloud-download fa-4x">&nbsp;</i>
+        </a>
+      </span>
+      Install MATSim on your computer.
+    </div>
+    <div class="col-md-4 text-left section-thumb">
+      <h3>
+        <a href="/gallery/">
+          Gallery
+        </a>
+      </h3>
+      <span class="pull-left">
+        <a href="/gallery">
+          <i class="fa fa-globe fa-4x">&nbsp;</i>
+        </a>
+      </span>
+      MATSim is used all over the world! Have a look at the gallery to see how others are using MATSim.
+    </div>
+    <div class="col-md-4 text-left section-thumb">
+      <h3>
+        <a href="/docs/">
+          Documentation
+        </a>
+      </h3>
+      <span class="pull-left">
+        <a href="/docs">
+          <i class="fa fa-book fa-4x">&nbsp;</i>
+        </a>
+      </span>
+      Read up upon MATSim or have a look at the available tutorials to learn how to use MATSim.
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2" id="news"></div>
+    <div class="col-md-4 text-left section-thumb">
+      <h3>
+        <a href="https://github.com/matsim-org/matsim-code-examples/issues">
+          Get Help
+        </a>
+      </h3>
+      <span class="pull-left">
+        <a href="https://github.com/matsim-org/matsim-code-examples/issues">
+          <i class="fa fa-comments fa-4x">&nbsp;</i>
+        </a>
+      </span>
+      Ask your questions on our
+      <br/>
+      <a href="/faq">Q&A platform</a>.
+    </div>
+    <div class="col-md-4 text-left section-thumb">
+      <h3>
+        <a href="/conferences">
+          Conferences &amp; Meetings
+        </a>
+      </h3>
+      <span class="pull-left">
+        <a href="conferences">
+          <i class="fa fa-calendar fa-4x">&nbsp;</i>
+        </a>
+      </span>
+      Upcoming announcements, and archives of previous conferences.</a>
+    </div>
 
-The Pi-hole[®](https://pi-hole.net/trademark-rules-and-brand-guidelines/) is a [DNS sinkhole](https://en.wikipedia.org/wiki/DNS_Sinkhole) that protects your devices from unwanted content, without installing any client-side software.
+    <!-- Commenting this out for the time being in attempt to point people to rather cloning the matsim-example-project.  kai, oct'17 -->
+    <!-- <div class="col-md-4 text-left section-thumb"> -->
+    <!-- <a href="https://github.com/matsim-org/matsim"> -->
+    <!-- <h3>Open Source</h3></a> -->
+    <!-- <span class="pull-left"><a href="https://github.com/matsim-org/matsim"><i class="fa fa-github fa-4x">&nbsp;</i></a></span> -->
+    <!-- MATSim is open source software written in Java. Visit us <a href="https://github.com/matsim-org/matsim">on GitHub</a> to have a look at the source code. -->
+    <!-- </div> -->
 
-- **Easy-to-install**: our versatile installer walks you through the process and takes less than ten minutes
-- **Resolute**: content is blocked in _non-browser locations_, such as ad-laden mobile apps and smart TVs
-- **Responsive**: seamlessly speeds up the feel of everyday browsing by caching DNS queries
-- **Lightweight**: runs smoothly with [minimal hardware and software requirements](main/prerequisites.md)
-- **Robust**: a command-line interface that is quality assured for interoperability
-- **Insightful**: a beautiful responsive Web Interface dashboard to view and control your Pi-hole
-- **Versatile**: can optionally function as a [DHCP server](https://discourse.pi-hole.net/t/how-do-i-use-pi-holes-built-in-dhcp-server-and-why-would-i-want-to/3026), ensuring _all_ your devices are protected automatically
-- **Scalable**: [capable of handling hundreds of millions of queries](https://pi-hole.net/2017/05/24/how-much-traffic-can-pi-hole-handle/) when installed on server-grade hardware
-- **Modern**: blocks ads over both IPv4 and IPv6
-- **Free**: open-source software which helps ensure _you_ are the sole person in control of your privacy
+    <div class="col-md-2" id="news"></div>
 
----
+  </div>
 
-## Pi-hole is free, but powered by your support
+  <div class="col-md-12 text-left" id="news">
+    <br/>
+    <br/>
+    <br/>
+    <a href="/feed/index.xml"><p class="matsim-rss-link">RSS FEED</p></a>
+    <a href="/submit-news/"><p class="matsim-rss-link">SUBMIT NEWS</p></a>
+    <p class="sidebar_title">Latest MATSim News</p>
+  </div>
 
-There are many reoccurring costs involved with maintaining free, open-source, and privacy respecting software; expenses which [our volunteer developers](https://github.com/orgs/pi-hole/people) pitch in to cover out-of-pocket. This is just one example of how strongly we feel about our software, as well as the importance of keeping it maintained.
-
-Make no mistake: **your support is absolutely vital to help keep us innovating!**
-
-### Donations
-
-Sending a donation using our links below is **extremely helpful** in offsetting a portion of our monthly expenses:
-
-- [Donate via PayPal or Stripe](https://pi-hole.net/donate/)
-- [Bitcoin, Bitcoin Cash, Ethereum, Litecoin](https://commerce.coinbase.com/checkout/dd304d04-f324-4a77-931b-0db61c77a41b)
-
-### Alternative support
-
-If you'd rather not donate (_which is okay!_), there are other ways you can help support us:
-
-- [Patreon](https://patreon.com/pihole) _Become a patron for rewards_
-- [Digital Ocean](https://www.digitalocean.com/?refcode=344d234950e1) _new account credits with our affiliate link_
-- [Stickermule](https://www.stickermule.com/unlock?ref_id=9127301701&utm_medium=link&utm_source=invite) _earn a $10 credit after your first purchase_
-- [Amazon](https://www.amazon.com/exec/obidos/redirect-home/pihole09-20) _affiliate link_
-- Spreading the word about our software, and how you have benefited from it
-
-### Contributing via GitHub
-
-We welcome _everyone_ to contribute to issue reports, suggest new features, and create pull requests.
-
-If you have something to add - anything from a typo through to a whole new feature, we're happy to check it out! Just make sure to fill out our template when submitting your request; the questions that it asks will help the volunteers quickly understand what you're aiming to achieve.
-
-You'll find that the [install script](https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh) and the [debug script](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/piholeDebug.sh) have an abundance of comments, which will help you better understand how Pi-hole works. They're also a valuable resource to those who want to learn how to write scripts or code a program! We encourage anyone who likes to tinker to read through it, and submit a pull request for us to review.
-
-{!abbreviations.md!}
+  <div class="col-md-12 posts">
+    <!-- The news items in _data/news.yml are auto-generated from the CI build script once an hour. -->
+    {% for post in site.posts limit:7 %}
+    <article class="post">
+      <div class="entry">
+        <h4>
+          <a class="news-headline" href="{{ post.url }}">{{ post.title }}</a>
+        </h4>
+        <p class="blog-byline">Posted by {{post.author}} on {{ post.date  | date: "%e %b, %Y" }}</p>
+        {{ post.summary }}
+        <br/>
+        <br/>
+        <a href="{{ post.url }}" class="read-more">&raquo;&nbsp;Read&nbsp;More&hellip;</a>
+      </div>
+      <div class="faint_border"></div>
+    </article>
+    {% endfor %}
+  </div>
+</div>
