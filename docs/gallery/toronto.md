@@ -1,14 +1,11 @@
 ---
 title: "Toronto, Canada"
 thumbnail: /gallery/toronto_thumb.png
-layout: scenario
-
-image1:
-  image: /gallery/toronto_1.jpg
-  caption: "MATSim in Greater Toronto."
-  
 ---
-{% include image.html image=page.image1 %}
+
+
+![MATSim in Greater Toronto](toronto_1.jpg)
+<p class="caption">MATSim in Greater Toronto</p>
 
 Work on the GTA MATSim scenario started in fall 2008. Due to the availability of an agent-based demand generation model for the Greater Toronto area, the first scenario run in MATSim could be completed within one week of joint work of two Master students from Toronto with the MATSim groups in Berlin and Zurich.
 

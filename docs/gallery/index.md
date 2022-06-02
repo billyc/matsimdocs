@@ -1,15 +1,16 @@
 ---
-layout: default
+template: gallery.html
 title: Scenarios
 ---
-<h2>Scenario Gallery</h2>
+
+# Scenario Gallery
 
 <div class="col-md-6">
   MATSim is used all over the world! Have a look how others use MATSim and in what regions they apply it. Learn what data they used and how they prepared their data and processed the output.
-  
+
   <div class="infobox">
     <a href="/open-scenario-data"><i class="fa fa-2x fa-files-o pull-left"></i></a>&nbsp;
-    Some scenario data is freely available. 
+    Some scenario data is freely available.
     <a href="/open-scenario-data">Have a look!</a>
   </div>
 </div>
@@ -22,20 +23,3 @@ title: Scenarios
 <hr/>
 </div>
 
-{% for scenario in site.data.scenarios %}
-
-<div class="col-md-4 scenario-thumb">
-<a href="{{ site.baseurl }}{{ scenario.url }}">
-<h4>{{ scenario.name }}</h4>
-<img class="dataset-thumbnail" src="{{ site.baseurl }}{{ scenario.image }}" width="320" height="180" alt="image"/>
-</a>
-</div>
-
-{% endfor %}
-
-
-<div class="col-md-12">
-<br/><br/>
-Do you have a scenario and want to present it here as well? Feel free to <a href="mailto:info@matsim.org">contact us</a> so we can add it!
-<br/><br/>
-</div>

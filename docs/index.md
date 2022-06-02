@@ -1,3 +1,7 @@
+---
+template: blog_list.html
+---
+
 ![MATSim Logo](/images/matsim-logo.png)
 
 <div class="row">
@@ -113,3 +117,8 @@
     {% endfor %}
   </div>
 </div>
+
+<br/>
+<br/>
+
+# <b>Latest MATSim News</b>

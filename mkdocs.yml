@@ -6,16 +6,17 @@ remote_branch: gh-pages
 copyright:
 
 nav:
-  - Overview: index.md
+  - Home: index.md
   - Tutorials:
       - Quick start: tutorials/general.md
-  - For users:
+  - Gallery: gallery/index.md
+  - For Users:
       - 'User Guide'
       - Extensions
       - MATSim Book
       - 'Q & A'
       - Community pages
-  - Developer guide:
+  - For Developers:
       - Setting up your dev environment:
           - IDE configuration: devguide/ide-configuration.md
           - Java: devguide/java.md
@@ -39,8 +40,151 @@ nav:
       - Issue Tracker
       - Build Server
       - MATSim Community Pages
-  - FAQ: main/faq.md
+  # - FAQ: main/faq.md
   - Community Projects: main/projects.md
+  - News:
+    - news/index.md
+    - 2022:
+      - news/2022-05-10-job-opening-sbb.md
+      - news/2022-03-08-job-dresden.md
+      - news/2022-02-10-job-post-boku.md
+      - news/2022-02-10-abm-modelling-uae.md
+    - 2021:
+      - news/2021-12-03-matsim-um.md
+      - news/2021-10-04-job-post-sbb.md
+      - news/2021-06-08-teralytics-job-posting.md
+      - news/2021-06-08-research-position.md
+      - news/2021-05-27-research-position-v.md
+      - news/2021-05-27-research-position-bmvi.md
+      - news/2021-05-27-research-assistant-covid19.md
+      - news/2021-05-03-job-opening-moia.md
+      - news/2021-04-26-PR-labelled-releases.md
+      - news/2021-04-12-matsim-13-released.md
+      - news/2021-02-10-matsim-user-meeting-2021.md
+      - news/2021-01-05-ulco-murdasp.md
+    - 2020:
+      - news/2020-12-07-news-item.md
+      - news/2020-10-30-hermes.md
+      - news/2020-10-08-open-positions-politechnique-montreal.md
+      - news/2020-10-08-episim-berlin.md
+      - news/2020-07-15-matsim-12-released.md
+      - news/2020-03-12-mum-cancelled.md
+      - news/2020-02-19-itm-seattle-2020.md
+      - news/2020-02-13-events-comparison-in-tests.md
+      - news/2020-01-13-jobPostSBB.md
+    - 2019:
+      - news/2019-12-20-matsim-user-meeting-registration.md
+      - news/2019-12-05-matsim-news-now-on-github.md
+      - news/2019-12-02-routing-mode.md
+      - news/2019-11-25-tel-aviv-univ.md
+      - news/2019-10-28-vrije-univ-brussels.md
+      - news/2019-10-04-matsim-user-meeting.md
+
+gallery:
+  - name: "Dakar, Senegal"
+    url: /gallery/dakar
+    image: /gallery/dakar_thumb.png
+
+  - name: "USA"
+    url: /gallery/usa-nationwide
+    image: /gallery/usa-nationwide_thumb.jpg
+
+  - name: "Open Île-de-France, France"
+    url: /gallery/ile_de_france
+    image: /gallery/ile_de_france_thumb.png
+
+  - name: "Paris, France"
+    url: /gallery/paris
+    image: /gallery/paris_thumb.jpg
+
+  - name: "Sweden"
+    url: /gallery/sweden
+    image: /gallery/sweden_thumb.png
+
+  - name: "Santiago, Chile"
+    url: /gallery/santiago
+    image: /gallery/santiago_thumb.jpg
+
+  - name: "Quito, Ecuador"
+    url: /gallery/quito
+    image: /gallery/quito_thumb.jpg
+
+  - name: "Vorarlberg, Austria"
+    url: /gallery/vorarlberg
+    image: /gallery/vorarlberg_thumb.png
+
+  - name: "Poznan, Poland"
+    url: /gallery/poznan
+    image: /gallery/poznan_thumb.jpg
+
+  - name: "Germany"
+    url: /gallery/germany
+    image: /gallery/germany_thumb.jpg
+
+  - name: "Seoul, South Korea"
+    url: /gallery/seoul
+    image: /gallery/seoul_thumb.png
+
+  - name: "Singapore"
+    url: /gallery/singapore
+    image: /gallery/singapore_thumb.jpg
+
+  - name: "Freight in South Africa"
+    url: /gallery/south-africa
+    image: /gallery/safrica_thumb.jpg
+
+  - name: "Tel Aviv, Israel"
+    url: /gallery/telaviv
+    image: /gallery/telaviv_thumb.jpg
+
+  - name: "Berlin, Germany"
+    url: /gallery/berlin
+    image: /gallery/berlin_thumb.jpg
+
+  - name: "Air Traffic over Europe"
+    url: /gallery/air-traffic
+    image: /gallery/airtraffic_thumb.jpg
+
+  - name: "Zurich, Switzerland"
+    url: /gallery/zurich
+    image: /gallery/zurich_thumb.jpg
+
+  - name: "Munich, Germany"
+    url: /gallery/munich
+    image: /gallery/munich_thumb.jpg
+
+  - name: "Gauteng, South Africa"
+    url: /gallery/gauteng
+    image: /gallery/gauteng_thumb.png
+
+  - name: "Padang, Indonesia"
+    url: /gallery/padang
+    image: /gallery/padang_thumb.jpg
+
+  - name: "Joinville, Brazil"
+    url: /gallery/joinville
+    image: /gallery/joinville_thumb.jpg
+
+  - name: "Izmir, Turkey"
+    url: /gallery/izmir
+    image: /gallery/izmir_thumb.jpg
+
+  - name: "Toronto, Canada"
+    url: /gallery/toronto
+    image: /gallery/toronto_thumb.jpg
+
+  - name: "Sioux Falls, SD, USA"
+    url: /gallery/sioux-falls
+    image: /gallery/sioux_falls_thumb.jpg
+
+  - name: "Aliaga, Turkey"
+    url: /gallery/aliaga
+    image: /gallery/aliaga_thumb.jpg
+
+  - name: "Caracas, Venezuela"
+    url: /gallery/caracas
+    image: /gallery/caracas_thumb.jpg
+
 
 theme:
   name: 'material'
@@ -54,8 +198,13 @@ theme:
     text: 'Source Sans Pro'
     code: 'Roboto Mono'
   features:
+    - navigation.expand
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.top
+    - navigation.indexes
     - navigation.instant
+    # - navigation.sections
     - search.suggest
     - search.highlight
     - search.share
@@ -116,6 +265,10 @@ markdown_extensions:
   - meta
 
 extra:
+  blog:
+    dir: news
+    list_length: 8
+    extended_preview: false
   social:
     - icon: fontawesome/solid/earth-americas
       link: https://matsim.org/
@@ -126,6 +279,7 @@ extra:
 
 extra_css:
   - extra.css
+  - stylesheets/extra.css
 
 plugins:
   - search
