@@ -1,0 +1,2063 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://matsim.org/pi-hole/ftldns/valgrind/">
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
+    
+    
+      
+        <title>Debugging FTLDNS using `valgrind` - MATSim</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.644de097.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Sans Pro";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#debugging-ftldns-using-valgrind" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MATSim" class="md-header__button md-logo" aria-label="MATSim" data-md-component="logo">
+      
+  <img src="../../../images/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MATSim
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Debugging FTLDNS using `valgrind`
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/matsim-org/jekyll-website" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tutorials/general/" class="md-tabs__link">
+        Tutorials
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../gallery/" class="md-tabs__link">
+      Gallery
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../User Guide" class="md-tabs__link">
+        For Users
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../devguide/ide-configuration/" class="md-tabs__link">
+        For Developers
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../main/projects.md" class="md-tabs__link">
+      Community Projects
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../news/" class="md-tabs__link">
+        News
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MATSim" class="md-nav__button md-logo" aria-label="MATSim" data-md-component="logo">
+      
+  <img src="../../../images/logo.svg" alt="logo">
+
+    </a>
+    MATSim
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/matsim-org/jekyll-website" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" data-md-state="indeterminate" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Tutorials
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/general/" class="md-nav__link">
+        Quick start
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gallery/" class="md-nav__link">
+        Gallery
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" data-md-state="indeterminate" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          For Users
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="For Users" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          For Users
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../User Guide" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Extensions" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MATSim Book" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Q & A" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Community pages" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" data-md-state="indeterminate" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          For Developers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="For Developers" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          For Developers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" data-md-state="indeterminate" type="checkbox" id="__nav_5_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../devguide/eclipse/">Setting up your dev environment</a>
+          
+            <label for="__nav_5_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Setting up your dev environment" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          Setting up your dev environment
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/ide-configuration/" class="md-nav__link">
+        IDE configuration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/java/" class="md-nav__link">
+        Java
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/development-environment/" class="md-nav__link">
+        Development environment
+      </a>
+    </li>
+  
+
+            
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/eclipse/jdk/" class="md-nav__link">
+        Eclipse JDK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/proxy-configuration/" class="md-nav__link">
+        Proxy configuration
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" data-md-state="indeterminate" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          MATSim Coding Conventions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MATSim Coding Conventions" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          MATSim Coding Conventions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/conventions/" class="md-nav__link">
+        Conventions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/naming-conventions/" class="md-nav__link">
+        Naming conventions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/configuration-conventions/" class="md-nav__link">
+        Configuration conventions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/data-in-source-repository/" class="md-nav__link">
+        Data in source repository
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/documenting-your-code/" class="md-nav__link">
+        Documenting your code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/commit-rules/" class="md-nav__link">
+        Commit rules
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/prefer-composition-and-delegation-over-inheritance/" class="md-nav__link">
+        Composition vs inheritance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/using-generics/" class="md-nav__link">
+        Using Generics
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" data-md-state="indeterminate" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Builds
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Builds" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Builds
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/build-release/" class="md-nav__link">
+        Build a release
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/custom-gui/" class="md-nav__link">
+        Custom GUI
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API Documentation" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Issue Tracker" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Build Server" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MATSim Community Pages" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../main/projects.md" class="md-nav__link">
+        Community Projects
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" data-md-state="indeterminate" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../news/">News</a>
+          
+            <label for="__nav_7">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="News" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          News
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_2" data-md-state="indeterminate" type="checkbox" id="__nav_7_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_2">
+          2022
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2022" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          2022
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2022-05-10-job-opening-sbb/" class="md-nav__link">
+        Job posting SBB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2022-03-08-job-dresden/" class="md-nav__link">
+        Position as researcher / PhD student / TU Dresden
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2022-02-10-job-post-boku/" class="md-nav__link">
+        Job opportunity at BOKU in Vienna
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2022-02-10-abm-modelling-uae/" class="md-nav__link">
+        ABM Modelling job opportunity in UAE
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_3" data-md-state="indeterminate" type="checkbox" id="__nav_7_3" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3">
+          2021
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2021" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_3">
+          <span class="md-nav__icon md-icon"></span>
+          2021
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-12-03-matsim-um/" class="md-nav__link">
+        MATSim User Meeting 2022
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-10-04-job-post-sbb/" class="md-nav__link">
+        Job posting SBB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-06-08-teralytics-job-posting/" class="md-nav__link">
+        Job Posting: Transport Model Development Intern, Berlin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-06-08-research-position/" class="md-nav__link">
+        PhD position at IFP Energies nouvelles (IFPEN)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-05-27-research-position-v/" class="md-nav__link">
+        Research assistant/PhD candidate position at Transport Systems Planning and Transport Telematics, TU Berlin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-05-27-research-position-bmvi/" class="md-nav__link">
+        Research assistant/PhD candidate position at Transport Systems Planning and Transport Telematics, TU Berlin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-05-27-research-assistant-covid19/" class="md-nav__link">
+        Research assistant/PhD candidate position at Transport Systems Planning and Transport Telematics, TU Berlin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-05-03-job-opening-moia/" class="md-nav__link">
+        Job posting: Transport Modeling Specialist at MOIA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-04-26-PR-labelled-releases/" class="md-nav__link">
+        PR-labelled releases
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-04-12-matsim-13-released/" class="md-nav__link">
+        MATSim 13.0 released, and new Maven Repository
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-02-10-matsim-user-meeting-2021/" class="md-nav__link">
+        MATSim User Meeting 2021
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-01-05-ulco-murdasp/" class="md-nav__link">
+        Postdoc position at University of Littoral (Dunkerque)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_4" data-md-state="indeterminate" type="checkbox" id="__nav_7_4" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_4">
+          2020
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2020" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_4">
+          <span class="md-nav__icon md-icon"></span>
+          2020
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-12-07-news-item/" class="md-nav__link">
+        Postdoc position
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-10-30-hermes/" class="md-nav__link">
+        Introducing HERMES
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-10-08-open-positions-politechnique-montreal/" class="md-nav__link">
+        MATSim Positions available at Polytechnique Montreal
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-10-08-episim-berlin/" class="md-nav__link">
+        EpiSim with MATSim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-07-15-matsim-12-released/" class="md-nav__link">
+        MATSim 12.0 released
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-03-12-mum-cancelled/" class="md-nav__link">
+        MATSim User Meeting Cancelled
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-02-19-itm-seattle-2020/" class="md-nav__link">
+        TRB Innovations in Travel Modeling - call for late breaking research
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-02-13-events-comparison-in-tests/" class="md-nav__link">
+        Events comparison in regression tests
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-01-13-jobPostSBB/" class="md-nav__link">
+        Job Posting: Mobility Expert at SBB
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_5" data-md-state="indeterminate" type="checkbox" id="__nav_7_5" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_5">
+          2019
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2019" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_5">
+          <span class="md-nav__icon md-icon"></span>
+          2019
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2019-12-20-matsim-user-meeting-registration/" class="md-nav__link">
+        Registration for the User Meeting is now open
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2019-12-05-matsim-news-now-on-github/" class="md-nav__link">
+        MATSim news is now on matsim.org
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2019-12-02-routing-mode/" class="md-nav__link">
+        Routing mode + (helper) walk modes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2019-11-25-tel-aviv-univ/" class="md-nav__link">
+        MATSim-related Post-Doc Position in Tel-Aviv University, Israel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2019-10-28-vrije-univ-brussels/" class="md-nav__link">
+        Ph.D. at MOBI (Vrije Universiteit Brussel Belgium)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2019-10-04-matsim-user-meeting/" class="md-nav__link">
+        Announcing MATSim User Meeting 2020: April 6th at ANT in Warsaw, Poland
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#memcheck" class="md-nav__link">
+    memcheck
+  </a>
+  
+    <nav class="md-nav" aria-label="memcheck">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparations" class="md-nav__link">
+    Preparations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command" class="md-nav__link">
+    Command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#false-positive-memory-issues" class="md-nav__link">
+    False-positive memory issues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-memory-leaks" class="md-nav__link">
+    Known memory leaks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/matsim-org/docs/blob/master/docs/pi-hole/ftldns/valgrind.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+
+<h1 id="debugging-ftldns-using-valgrind">Debugging FTLDNS using <code>valgrind</code><a class="headerlink" href="#debugging-ftldns-using-valgrind" title="Permanent link">&para;</a></h1>
+<p>Occasionally, debugging may require us to run <code>pihole-FTL</code> in <code>valgrind</code>. We also use it to measure performance and check that our memory layout is optimal (= minimal footprint).</p>
+<p><code>Valgrind</code> is a flexible program for debugging and profiling Linux executables. It consists of a core, which provides a synthetic CPU in software, and a series of debugging and profiling tools.</p>
+<h2 id="memcheck"><code>memcheck</code><a class="headerlink" href="#memcheck" title="Permanent link">&para;</a></h2>
+<p>The arguably most often used tool in <code>valgrind</code> is <code>memcheck</code>. Note: When running FTL in Memcheck, it runs about 10-30x slower than normal. Especially the initial import of queries from the database is largely slowed down as SQLite3 frequently allocates and releases heap memory.</p>
+<p>Memcheck is a memory error detector. It can detect the following problems that are common in C and C++ programs.</p>
+<ol>
+<li>Accessing memory you shouldn't, e.g. overrunning and underrunning heap blocks, overrunning the top of the stack, and accessing memory after it has been freed.</li>
+<li>Using undefined values, i.e. values that have not been initialised, or that have been derived from other undefined values.</li>
+<li>Incorrect freeing of heap memory, such as double-freeing heap blocks, or mismatched use of <code>malloc</code>/<code>new</code>/<code>new[]</code> versus <code>free</code>/<code>delete</code>/<code>delete[]</code></li>
+<li>Overlapping <code>src</code> and <code>dst</code> pointers in <code>memcpy</code> and related functions.</li>
+<li>Passing a fishy (presumably negative) value to the size parameter of a memory allocation function.</li>
+<li>Memory leaks.</li>
+</ol>
+<p>Problems like these can be difficult to find by other means, often remaining undetected for long periods, then causing occasional, difficult-to-diagnose crashes.</p>
+<p>Make sure to terminate any existing FTL process before starting FTL inside <code>valgrind</code>.</p>
+<h3 id="preparations">Preparations<a class="headerlink" href="#preparations" title="Permanent link">&para;</a></h3>
+<p>You have to stop the regular <code>pihole-FTL</code> process before starting a <code>valgrind</code> debugging session:</p>
+<div class="highlight"><pre><span></span><code>sudo service pihole-FTL stop
+</code></pre></div>
+<p>Furthermore, you'll have to strip the networking capabilities from the binary using:</p>
+<div class="highlight"><pre><span></span><code>sudo setcap -r /usr/bin/pihole-FTL
+</code></pre></div>
+<p>They'll automatically be re-added when using <code>sudo service pihole-FTL start</code> next time.</p>
+<h3 id="command">Command<a class="headerlink" href="#command" title="Permanent link">&para;</a></h3>
+<p>We suggest the following one-liner to run <code>pihole-FTL</code> in <code>memcheck</code>:</p>
+<div class="highlight"><pre><span></span><code>sudo rm /dev/shm/FTL-*; sudo valgrind --trace-children=yes --leak-check=full --track-origins=yes -s /usr/bin/pihole-FTL &amp;&gt; valgrind.log
+</code></pre></div>
+<p>If you compile FTL from source, use</p>
+<div class="highlight"><pre><span></span><code>sudo rm /dev/shm/FTL-*; ./build.sh &amp;&amp; sudo valgrind --trace-children=yes --leak-check=full --track-origins=yes -s ./pihole-FTL &amp;&gt; valgrind.log
+</code></pre></div>
+<p>The used options are:</p>
+<ol>
+<li><code>trace-children=yes</code> - Valgrind will trace into sub-processes initiated via the exec system call. This is necessary for multi-process programs. We use this to go down into possibly user scripts on DHCP activity, etc.</li>
+<li><code>leak-check=full</code> - When enabled, search for memory leaks when the client program finishes. Each individual leak will be shown in detail and/or counted as an error.</li>
+<li><code>track-origins=yes</code> - Memcheck tracks the origin of uninitialised values. By default, it does not, which means that although it can tell you that an uninitialised value is being used in a dangerous way, it cannot tell you where the uninitialised value came from. This often makes it difficult to track down the root problem.
+When set to <code>yes</code>, Memcheck keeps track of the origins of all uninitialised values. Then, when an uninitialised value error is reported, Memcheck will try to show the origin of the value.</li>
+</ol>
+<h3 id="false-positive-memory-issues">False-positive memory issues<a class="headerlink" href="#false-positive-memory-issues" title="Permanent link">&para;</a></h3>
+<p>You may see lines like:</p>
+<!-- markdownlint-disable code-block-style -->
+<details class="info">
+<summary><code>main_dnsmasq</code>: Syscall param sendmsg(msg.msg_control) points to uninitialised byte(s)</summary>
+<p><div class="highlight"><pre><span></span><code>==2681669== Syscall param sendmsg(msg.msg_control) points to     uninitialised byte(s)
+==2681669==    at 0x49C112D: __libc_sendmsg (sendmsg.c:28)
+==2681669==    by 0x49C112D: sendmsg (sendmsg.c:25)
+==2681669==    by 0x188C5B: send_from (forward.c:97)
+==2681669==    by 0x18C7C1: reply_query (forward.c:1347)
+==2681669==    by 0x17C45B: check_dns_listeners (dnsmasq.c:1770)
+==2681669==    by 0x17E759: main_dnsmasq (dnsmasq.c:1209)
+==2681669==    by 0x146649: main (main.c:96)
+==2681669==  Address 0x1fff000088 is on thread 1&#39;s stack
+==2681669==  in frame #1, created by send_from (forward.c:34)
+==2681669==  Uninitialised value was created by a stack allocation
+==2681669==    at 0x188B7D: send_from (forward.c:34)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>==2681669== Syscall param sendmsg(msg.msg_control) points to uninitialised byte(s)
+==2681669==    at 0x49C112D: __libc_sendmsg (sendmsg.c:28)
+==2681669==    by 0x49C112D: sendmsg (sendmsg.c:25)
+==2681669==    by 0x188C5B: send_from (forward.c:97)
+==2681669==    by 0x18BCFB: receive_query (forward.c:1726)
+==2681669==    by 0x17C3DA: check_dns_listeners (dnsmasq.c:1797)
+==2681669==    by 0x17E759: main_dnsmasq (dnsmasq.c:1209)
+==2681669==    by 0x146649: main (main.c:96)
+==2681669==  Address 0x1ffeffff88 is on thread 1&#39;s stack
+==2681669==  in frame #1, created by send_from (forward.c:34)
+==2681669==  Uninitialised value was created by a stack allocation
+==2681669==    at 0x188B7D: send_from (forward.c:34)
+</code></pre></div></p>
+</details>
+<!-- markdownlint-enable code-block-style -->
+
+<!-- markdownlint-disable code-block-style -->
+<details class="info">
+<summary><code>main_dnsmasq</code>: Syscall param write(buf) points to uninitialised byte(s)</summary>
+<div class="highlight"><pre><span></span><code>==2681688== Syscall param write(buf) points to uninitialised byte(s)
+==2681688==    at 0x49C02CF: __libc_write (write.c:26)
+==2681688==    by 0x49C02CF: write (write.c:24)
+==2681688==    by 0x1C10D4: read_write (util.c:698)
+==2681688==    by 0x17080B: cache_end_insert.part.0 (cache.c:688)
+==2681688==    by 0x1AA7B1: extract_addresses (rfc1035.c:894)
+==2681688==    by 0x187CA0: process_reply (forward.c:786)
+==2681688==    by 0x189C63: tcp_request (forward.c:2321)
+==2681688==    by 0x17C6B3: check_dns_listeners (dnsmasq.c:1978)
+==2681688==    by 0x17E759: main_dnsmasq (dnsmasq.c:1209)
+==2681688==    by 0x146649: main (main.c:96)
+==2681688==  Address 0x4d013dc is 140 bytes inside a block of size 1,120,000 alloc&#39;d
+==2681688==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2681688==    by 0x1C0324: safe_malloc (util.c:282)
+==2681688==    by 0x1716F7: cache_init (cache.c:111)
+==2681688==    by 0x17E089: main_dnsmasq (dnsmasq.c:396)
+==2681688==    by 0x146649: main (main.c:96)
+==2681688==  Uninitialised value was created by a stack allocation
+==2681688==    at 0x1AA4F0: extract_addresses (rfc1035.c:537)
+</code></pre></div>
+</details>
+<!-- markdownlint-enable code-block-style -->
+
+<p>These are known false-positives as use of <code>-O2</code> and above is not recommended with Memcheck (<code>pihole-FTL</code> is typically compiled with <code>-O3</code>). It occasionally reports uninitialised-value errors which don't really exist.</p>
+<h3 id="known-memory-leaks">Known memory leaks<a class="headerlink" href="#known-memory-leaks" title="Permanent link">&para;</a></h3>
+<p>Usually the GNU C library (<code>libc.so</code>) doesn't bother to free that memory when the program ends - there would be no point, since the Linux kernel reclaims all process resources when a process exits anyway, so it would just slow things down. The glibc authors realised that this behaviour causes leak checkers, such as Valgrind, to falsely report leaks in glibc, when a leak check is done at exit. In order to avoid this, they provided a routine called <code>__libc_freeres</code> specifically to make glibc release all memory it has allocated. This, however, does not cover the memory allocated by <code>res_init()</code> for <code>gethostbyaddr()</code>.</p>
+<!-- markdownlint-disable code-block-style -->
+<details class="info">
+<summary><code>gethostbyaddr</code>: 28 bytes in 1 blocks are definitely lost</summary>
+<p><div class="highlight"><pre><span></span><code>==2681688== 28 bytes in 1 blocks are definitely lost in loss record 49 of 200
+==2681688==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2681688==    by 0x84B840E: ???
+==2681688==    by 0x84B5C43: ???
+==2681688==    by 0x84A9904: ???
+==2681688==    by 0x84A9C26: ???
+==2681688==    by 0x4B022ED: gethostbyaddr_r@@GLIBC_2.2.5 (getXXbyYY_r.c:315)
+==2681688==    by 0x4B02008: gethostbyaddr (getXXbyYY.c:135)
+==2681688==    by 0x155BC6: resolveHostname.part.0 (resolve.c:216)
+==2681688==    by 0x155FF4: resolveHostname (resolve.c:134)
+==2681688==    by 0x155FF4: resolveAndAddHostname (resolve.c:319)
+==2681688==    by 0x156F42: resolveUpstreams (resolve.c:553)
+==2681688==    by 0x156F42: DNSclient_thread (resolve.c:608)
+==2681688==    by 0x49B5608: start_thread (pthread_create.c:477)
+==2681688==    by 0x4AF1292: clone (clone.S:95)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>==2681688== 96 bytes in 1 blocks are definitely lost in loss record 100 of 200
+==2681688==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2681688==    by 0x4A710D4: __libc_alloc_buffer_allocate     (alloc_buffer_allocate.c:26)
+==2681688==    by 0x4B145A8: alloc_buffer_allocate (alloc_buffer.h:143)
+==2681688==    by 0x4B145A8: __resolv_conf_allocate (resolv_conf.c:411)
+==2681688==    by 0x4B11EB1: __resolv_conf_load (res_init.c:592)
+==2681688==    by 0x4B141B2: __resolv_conf_get_current (resolv_conf.c:163)
+==2681688==    by 0x4B12464: __res_vinit (res_init.c:614)
+==2681688==    by 0x155DCC: resolveHostname.part.0 (resolve.c:180)
+==2681688==    by 0x155FF4: resolveHostname (resolve.c:134)
+==2681688==    by 0x155FF4: resolveAndAddHostname (resolve.c:319)
+==2681688==    by 0x156BFA: resolveClients (resolve.c:462)
+==2681688==    by 0x156BFA: DNSclient_thread (resolve.c:605)
+==2681688==    by 0x49B5608: start_thread (pthread_create.c:477)
+==2681688==    by 0x4AF1292: clone (clone.S:95)
+</code></pre></div></p>
+</details>
+<!-- markdownlint-enable code-block-style -->
+
+<p>This, and similar, loss record can safely be ignored.</p>
+<p>For performance reasons, we keep a few prepared SQL statement always ready for execution in the main thread. However, this has the disadvantage that forks will inherit them. As <a href="https://www.sqlite.org/howtocorrupt.html">it is not safe</a> to use a database connection across forks, we discard the open connection and open a new one. This will inevitably lead to a memory loss, however, the SQLite3 engine is not able to handle this any better.</p>
+<p>As forking relies on <a href="https://en.wikipedia.org/wiki/Copy-on-write">copy-on-write</a>, this does not <em>actually</em> lead to a memory wasting as the resource will be shared between the fork and the original process. Furthermore, TCP workers are typically rare and short-lived so this leak isn't anything we are too worried about.</p>
+<!-- markdownlint-disable code-block-style -->
+<details class="info">
+<summary><code>gravityDB_open</code>: <em>(some)</em> bytes in 1 blocks are definitely lost</summary>
+<p><div class="highlight"><pre><span></span><code>==2681688== 40 (32 direct, 8 indirect) bytes in 1 blocks are definitely lost in loss record 75 of 200
+==2681688==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2681688==    by 0x15AE74: new_sqlite3_stmt_vec (vector.c:22)
+==2681688==    by 0x16241E: gravityDB_open (gravity-db.c:184)
+==2681688==    by 0x16241E: gravityDB_open (gravity-db.c:100)
+==2681688==    by 0x14AE3C: FTL_reload_all_domainlists (datastructure.c:463)
+==2681688==    by 0x161D84: DB_thread (database-thread.c:86)
+==2681688==    by 0x49B5608: start_thread (pthread_create.c:477)
+==2681688==    by 0x4AF1292: clone (clone.S:95)
+==2681688==
+==2681688== 40 (32 direct, 8 indirect) bytes in 1 blocks are definitely lost in loss record 76 of 200
+==2681688==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2681688==    by 0x15AE74: new_sqlite3_stmt_vec (vector.c:22)
+==2681688==    by 0x16245E: gravityDB_open (gravity-db.c:186)
+==2681688==    by 0x16245E: gravityDB_open (gravity-db.c:100)
+==2681688==    by 0x14AE3C: FTL_reload_all_domainlists (datastructure.c:463)
+==2681688==    by 0x161D84: DB_thread (database-thread.c:86)
+==2681688==    by 0x49B5608: start_thread (pthread_create.c:477)
+==2681688==    by 0x4AF1292: clone (clone.S:95)
+==2681688==
+==2681688== 40 (32 direct, 8 indirect) bytes in 1 blocks are definitely lost in loss record 77 of 200
+==2681688==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2681688==    by 0x15AE74: new_sqlite3_stmt_vec (vector.c:22)
+==2681688==    by 0x16243E: gravityDB_open (gravity-db.c:188)
+==2681688==    by 0x16243E: gravityDB_open (gravity-db.c:100)
+==2681688==    by 0x14AE3C: FTL_reload_all_domainlist (datastructure.c:463)
+==2681688==    by 0x161D84: DB_thread (database-thread.c:86)
+==2681688==    by 0x49B5608: start_thread (pthread_create.c:477)
+==2681688==    by 0x4AF1292: clone (clone.S:95)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>==2681688== 188,505 (704 direct, 187,801 indirect) bytes in 1 blocks are definitely lost in loss record 199 of 200
+==2681688==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2681688==    by 0x2196BA: sqlite3MemMalloc (sqlite3.c:23771)
+==2681688==    by 0x28E77A: sqlite3Malloc (sqlite3.c:27686)
+==2681688==    by 0x28E77A: sqlite3MallocZero (sqlite3.c:27925)
+==2681688==    by 0x28E77A: openDatabase (sqlite3.c:164957)
+==2681688==    by 0x162149: gravityDB_open (gravity-db.c:119)
+==2681688==    by 0x162149: gravityDB_open (gravity-db.c:100)
+==2681688==    by 0x14AE3C: FTL_reload_all_domainlists (datastructure.c:463)
+==2681688==    by 0x161D84: DB_thread (database-thread.c:86)
+==2681688==    by 0x49B5608: start_thread (pthread_create.c:477)
+==2681688==    by 0x4AF1292: clone (clone.S:95)
+</code></pre></div></p>
+</details>
+<!-- markdownlint-enable code-block-style -->
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 1, 2022</span>
+      
+    
+  </small>
+</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div style="display: block">
+  Copyright VSP, Technische Universität Berlin. Licensed under
+  <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"
+    >CC BY-SA 4.0</a
+  >
+  <br />
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    <a href="https://matsim.org/" target="_blank" rel="noopener" title="Website" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M512 256c0 141.4-114.6 256-256 256S0 397.4 0 256 114.6 0 256 0s256 114.6 256 256zM57.71 192.1l9.36 17.3a64.042 64.042 0 0 0 38.03 29.8l57 16.5c18.1 4.9 29.9 20.6 29.9 38.5v39.9c0 11 6.2 21 16 25 9.8 5.8 16 15.8 16 26.8v39c0 15.6 14.9 26.8 29.9 22.5 16.2-4.6 28.6-18.3 32.7-33.7l2.8-11.2c4.2-16.9 15.2-31.4 30.3-40.1l8.1-4.6c15-8.5 24.2-24.4 24.2-41.7v-8.2c0-12.8-5.1-25-14.1-34l-3.8-3.8c-9-9-21.3-15-34-15h-44c-10.2 0-21.2-2-30.9-7.5l-34.5-19.8c-4.3-2.4-7.6-6.4-9.1-11.1-3.2-9.6 1.1-20 10.1-24.6l6-2.9c6.6-3.3 14.2-3.9 20.4-1.5l24.1 7.7c8.1 2.7 17.1-.4 21.9-7.5 4.7-7.1 4.2-16.4-1.2-22.9l-13.6-16.2c-10-12-9.9-29.5.3-41.3l15.7-18.38c8.8-10.27 10.2-24.96 3.5-36.7l-2.4-4.16c-4.3-.17-6.9-.26-10.4-.26-92.9 0-171.6 60.9-198.29 144.1zm379.89-37.6L412 164.8c-15.7 6.3-23.8 23.7-18.5 39.8l16.9 50.7c3.5 10.4 12 18.3 22.6 21l29.2 7.2c1.2-9 1.8-18.2 1.8-27.5 0-36.8-9.6-71.4-26.4-101.5z"/></svg>
+    </a>
+  
+    
+    
+    <a href="https://github.com/matsim-org" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.expand", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.indexes", "navigation.instant", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c44cc438.min.js"></script>
+      
+    
+  </body>
+</html>

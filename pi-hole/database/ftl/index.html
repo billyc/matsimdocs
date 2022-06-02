@@ -1,0 +1,2544 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://matsim.org/pi-hole/database/ftl/">
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
+    
+    
+      
+        <title>Ftl - MATSim</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.644de097.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Sans Pro";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#split-database" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MATSim" class="md-header__button md-logo" aria-label="MATSim" data-md-component="logo">
+      
+  <img src="../../../images/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MATSim
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ftl
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/matsim-org/jekyll-website" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tutorials/general/" class="md-tabs__link">
+        Tutorials
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../gallery/" class="md-tabs__link">
+      Gallery
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../User Guide" class="md-tabs__link">
+        For Users
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../devguide/ide-configuration/" class="md-tabs__link">
+        For Developers
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../main/projects.md" class="md-tabs__link">
+      Community Projects
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../news/" class="md-tabs__link">
+        News
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MATSim" class="md-nav__button md-logo" aria-label="MATSim" data-md-component="logo">
+      
+  <img src="../../../images/logo.svg" alt="logo">
+
+    </a>
+    MATSim
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/matsim-org/jekyll-website" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" data-md-state="indeterminate" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Tutorials
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/general/" class="md-nav__link">
+        Quick start
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gallery/" class="md-nav__link">
+        Gallery
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" data-md-state="indeterminate" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          For Users
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="For Users" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          For Users
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../User Guide" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Extensions" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MATSim Book" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Q & A" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Community pages" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" data-md-state="indeterminate" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          For Developers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="For Developers" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          For Developers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" data-md-state="indeterminate" type="checkbox" id="__nav_5_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../devguide/eclipse/">Setting up your dev environment</a>
+          
+            <label for="__nav_5_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Setting up your dev environment" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          Setting up your dev environment
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/ide-configuration/" class="md-nav__link">
+        IDE configuration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/java/" class="md-nav__link">
+        Java
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/development-environment/" class="md-nav__link">
+        Development environment
+      </a>
+    </li>
+  
+
+            
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/eclipse/jdk/" class="md-nav__link">
+        Eclipse JDK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/proxy-configuration/" class="md-nav__link">
+        Proxy configuration
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" data-md-state="indeterminate" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          MATSim Coding Conventions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MATSim Coding Conventions" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          MATSim Coding Conventions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/conventions/" class="md-nav__link">
+        Conventions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/naming-conventions/" class="md-nav__link">
+        Naming conventions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/configuration-conventions/" class="md-nav__link">
+        Configuration conventions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/data-in-source-repository/" class="md-nav__link">
+        Data in source repository
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/documenting-your-code/" class="md-nav__link">
+        Documenting your code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/commit-rules/" class="md-nav__link">
+        Commit rules
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/prefer-composition-and-delegation-over-inheritance/" class="md-nav__link">
+        Composition vs inheritance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/using-generics/" class="md-nav__link">
+        Using Generics
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" data-md-state="indeterminate" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Builds
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Builds" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Builds
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/build-release/" class="md-nav__link">
+        Build a release
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devguide/custom-gui/" class="md-nav__link">
+        Custom GUI
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API Documentation" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Issue Tracker" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Build Server" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MATSim Community Pages" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../main/projects.md" class="md-nav__link">
+        Community Projects
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" data-md-state="indeterminate" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../news/">News</a>
+          
+            <label for="__nav_7">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="News" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          News
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_2" data-md-state="indeterminate" type="checkbox" id="__nav_7_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_2">
+          2022
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2022" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          2022
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2022-05-10-job-opening-sbb/" class="md-nav__link">
+        Job posting SBB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2022-03-08-job-dresden/" class="md-nav__link">
+        Position as researcher / PhD student / TU Dresden
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2022-02-10-job-post-boku/" class="md-nav__link">
+        Job opportunity at BOKU in Vienna
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2022-02-10-abm-modelling-uae/" class="md-nav__link">
+        ABM Modelling job opportunity in UAE
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_3" data-md-state="indeterminate" type="checkbox" id="__nav_7_3" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3">
+          2021
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2021" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_3">
+          <span class="md-nav__icon md-icon"></span>
+          2021
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-12-03-matsim-um/" class="md-nav__link">
+        MATSim User Meeting 2022
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-10-04-job-post-sbb/" class="md-nav__link">
+        Job posting SBB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-06-08-teralytics-job-posting/" class="md-nav__link">
+        Job Posting: Transport Model Development Intern, Berlin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-06-08-research-position/" class="md-nav__link">
+        PhD position at IFP Energies nouvelles (IFPEN)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-05-27-research-position-v/" class="md-nav__link">
+        Research assistant/PhD candidate position at Transport Systems Planning and Transport Telematics, TU Berlin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-05-27-research-position-bmvi/" class="md-nav__link">
+        Research assistant/PhD candidate position at Transport Systems Planning and Transport Telematics, TU Berlin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-05-27-research-assistant-covid19/" class="md-nav__link">
+        Research assistant/PhD candidate position at Transport Systems Planning and Transport Telematics, TU Berlin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-05-03-job-opening-moia/" class="md-nav__link">
+        Job posting: Transport Modeling Specialist at MOIA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-04-26-PR-labelled-releases/" class="md-nav__link">
+        PR-labelled releases
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-04-12-matsim-13-released/" class="md-nav__link">
+        MATSim 13.0 released, and new Maven Repository
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-02-10-matsim-user-meeting-2021/" class="md-nav__link">
+        MATSim User Meeting 2021
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2021-01-05-ulco-murdasp/" class="md-nav__link">
+        Postdoc position at University of Littoral (Dunkerque)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_4" data-md-state="indeterminate" type="checkbox" id="__nav_7_4" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_4">
+          2020
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2020" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_4">
+          <span class="md-nav__icon md-icon"></span>
+          2020
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-12-07-news-item/" class="md-nav__link">
+        Postdoc position
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-10-30-hermes/" class="md-nav__link">
+        Introducing HERMES
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-10-08-open-positions-politechnique-montreal/" class="md-nav__link">
+        MATSim Positions available at Polytechnique Montreal
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-10-08-episim-berlin/" class="md-nav__link">
+        EpiSim with MATSim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-07-15-matsim-12-released/" class="md-nav__link">
+        MATSim 12.0 released
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-03-12-mum-cancelled/" class="md-nav__link">
+        MATSim User Meeting Cancelled
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-02-19-itm-seattle-2020/" class="md-nav__link">
+        TRB Innovations in Travel Modeling - call for late breaking research
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-02-13-events-comparison-in-tests/" class="md-nav__link">
+        Events comparison in regression tests
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2020-01-13-jobPostSBB/" class="md-nav__link">
+        Job Posting: Mobility Expert at SBB
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_5" data-md-state="indeterminate" type="checkbox" id="__nav_7_5" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_5">
+          2019
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2019" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_5">
+          <span class="md-nav__icon md-icon"></span>
+          2019
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2019-12-20-matsim-user-meeting-registration/" class="md-nav__link">
+        Registration for the User Meeting is now open
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2019-12-05-matsim-news-now-on-github/" class="md-nav__link">
+        MATSim news is now on matsim.org
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2019-12-02-routing-mode/" class="md-nav__link">
+        Routing mode + (helper) walk modes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2019-11-25-tel-aviv-univ/" class="md-nav__link">
+        MATSim-related Post-Doc Position in Tel-Aviv University, Israel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2019-10-28-vrije-univ-brussels/" class="md-nav__link">
+        Ph.D. at MOBI (Vrije Universiteit Brussel Belgium)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/2019-10-04-matsim-user-meeting/" class="md-nav__link">
+        Announcing MATSim User Meeting 2020: April 6th at ANT in Warsaw, Poland
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#split-database" class="md-nav__link">
+    Split database
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-database" class="md-nav__link">
+    Backup database
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-table" class="md-nav__link">
+    Query Table
+  </a>
+  
+    <nav class="md-nav" aria-label="Query Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-dependent-additional_info-field" class="md-nav__link">
+    Data-dependent additional_info field
+  </a>
+  
+    <nav class="md-nav" aria-label="Data-dependent additional_info field">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#additional_info_cname" class="md-nav__link">
+    Blocked CNAME
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional_info_regex" class="md-nav__link">
+    Regular expression
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#counters-table" class="md-nav__link">
+    Counters table
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ftl-table" class="md-nav__link">
+    FTL table
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-query-types" class="md-nav__link">
+    Supported query types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-status-types" class="md-nav__link">
+    Supported status types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-reply-types" class="md-nav__link">
+    Supported reply types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dnssec-status" class="md-nav__link">
+    DNSSEC status
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linking-tables" class="md-nav__link">
+    Linking tables
+  </a>
+  
+    <nav class="md-nav" aria-label="Linking tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#domain_by_id" class="md-nav__link">
+    domain_by_id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client_by_id" class="md-nav__link">
+    client_by_id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward_by_id" class="md-nav__link">
+    forward_by_id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addinfo_by_id" class="md-nav__link">
+    addinfo_by_id
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-for-interaction-with-the-long-term-query-database" class="md-nav__link">
+    Example for interaction with the long-term query database
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/matsim-org/docs/blob/master/docs/pi-hole/database/ftl.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+
+  <h1>Ftl</h1>
+
+<p>Pi-hole <em>FTL</em>DNS uses the well-known relational database management system SQLite3 as its long-term storage of query data. In contrast to many other database management solutions, <em>FTL</em>DNS does not need a server database engine as the database engine is directly embedded in <em>FTL</em>DNS. It seems an obvious choice as it is probably the most widely deployed database engine - it is used today by several widespread web browsers, operating systems, and embedded systems (such as mobile phones), among others. Hence, it is rich in supported platforms and offered features. SQLite implements most of the SQL-92 standard for SQL and can be used for high-level queries.</p>
+<p>The long-term query database was the first database that was added to the Pi-hole project.
+We update this database periodically and on the exit of <em>FTL</em>DNS (triggered e.g. by a <code>service pihole-FTL restart</code>). The updating frequency can be controlled by the parameter <a href="../../ftldns/configfile/#dbinterval"><code>DBINTERVAL</code></a> and defaults to once per minute. We think this interval is sufficient to protect against data losses due to power failure events. <em>FTL</em>DNS needs the database to populate its internal history of the most recent 24 hours. If the database is disabled, <em>FTL</em>DNS will show an empty query history after a restart.</p>
+<p>The location of the database can be configured by the config parameter <a href="../../ftldns/configfile/#dbfile"><code>DBFILE</code></a>. It defaults to <code>/etc/pihole/pihole-FTL.db</code>. If the given file does not exist, <em>FTL</em>DNS will create a new (empty) database file.</p>
+<p>Another way of controlling the size of the long-term database is by setting a maximum age for log queries to keep using the config parameter <a href="../../ftldns/configfile/#maxdbdays"><code>MAXDBDAYS</code></a>. It defaults to 365 days, i.e. queries that are older than one year get periodically removed to limit the growth of the long-term database file.</p>
+<p>The config parameter <a href="../../ftldns/configfile/#dbimport"><code>DBIMPORT</code></a> controls whether <code>FTL</code> loads information from the database on startup. It needs to do this to populate the internal data structure with the most recent history. However, as importing from the database on disk can delay FTL on very large deploys, it can be disabled using this option.</p>
+<hr />
+<h3 id="split-database">Split database<a class="headerlink" href="#split-database" title="Permanent link">&para;</a></h3>
+<p>You can split your long-term database by periodically rotating the database file (do this only when <code>pihole-FTL</code> is <em>not</em> running). The individual database contents can easily be merged when required.
+This could be implemented by running a monthly <code>cron</code> job such as:</p>
+<div class="highlight"><pre><span></span><code>sudo service pihole-FTL stop
+sudo mv /etc/pihole/pihole-FTL.db /media/backup/pihole-FTL_<span class="k">$(</span>date +<span class="s2">&quot;%m-%y&quot;</span><span class="k">)</span>.db
+sudo service pihole-FTL start
+</code></pre></div>
+<p>Note that DNS resolution will not be available as long as <code>pihole-FTL</code> is stopped.</p>
+<h3 id="backup-database">Backup database<a class="headerlink" href="#backup-database" title="Permanent link">&para;</a></h3>
+<p>The database can be backed up while FTL is running when using the SQLite3 Online backup method, e.g.,</p>
+<div class="highlight"><pre><span></span><code>sqlite3 /etc/pihole/pihole-FTL.db <span class="s2">&quot;.backup /home/pi/pihole-FTL.db.backup&quot;</span>
+</code></pre></div>
+<p>will create <code>/home/pi/pihole-FTL.db.backup</code> which is a copy of your long-term database.</p>
+<hr />
+<p>The long-term database contains several tables:</p>
+<h3 id="query-table">Query Table<a class="headerlink" href="#query-table" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Type</th>
+<th>Allowed to by empty</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>No</td>
+<td>autoincrement ID for the table, only used by SQLite3, not by <em>FTL</em>DNS</td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td>integer</td>
+<td>No</td>
+<td>Unix timestamp when this query arrived at <em>FTL</em>DNS (used as index)</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>integer</td>
+<td>No</td>
+<td>Type of this query (see <a href="./#supported-query-types">Supported query types</a>)</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>integer</td>
+<td>No</td>
+<td>How was this query handled by <em>FTL</em>DNS? (see <a href="./#supported-status-types">Supported status types</a>)</td>
+</tr>
+<tr>
+<td><code>domain</code></td>
+<td>text</td>
+<td>No</td>
+<td>Requested domain</td>
+</tr>
+<tr>
+<td><code>client</code></td>
+<td>text</td>
+<td>No</td>
+<td>Requesting client (IP address)</td>
+</tr>
+<tr>
+<td><code>forward</code></td>
+<td>text</td>
+<td>Yes</td>
+<td>Forward destination used for this query (only set if <code>status == 2</code>)</td>
+</tr>
+<tr>
+<td><code>additional_info</code></td>
+<td>blob</td>
+<td>Yes</td>
+<td>Data-dependent content, see below</td>
+</tr>
+<tr>
+<td><code>reply_type</code></td>
+<td>integer</td>
+<td>Yes</td>
+<td>Type of the reply for this query  (see <a href="./#supported-reply-types">Supported reply types</a>)</td>
+</tr>
+<tr>
+<td><code>reply_time</code></td>
+<td>real</td>
+<td>Yes</td>
+<td>Seconds it took until the final reply was received</td>
+</tr>
+<tr>
+<td><code>dnssec</code></td>
+<td>integer</td>
+<td>Yes</td>
+<td>Type of the DNSSEC status for this query  (see <a href="./#dnssec-status">DNSSEC status</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>queries</code> <code>VIEW</code> is dynamically generated from the data actually stored in the <code>query_storage</code> table and the linking tables <code>domain_by_id</code>, <code>client_by_id</code>, <code>forward_by_id</code>, and <code>addinfo_by_id</code> (see below). The table <code>query_storage</code> will contains integer IDs pointing to the respective entries of the linking tables to save space and make searching the database faster. If you haven't upgraded for some time, the table may still contain strings instead of integer IDs.</p>
+<h4 id="data-dependent-additional_info-field">Data-dependent <code>additional_info</code> field<a class="headerlink" href="#data-dependent-additional_info-field" title="Permanent link">&para;</a></h4>
+<p>The content and type of the <code>additional_info</code> row depends on the status of the given query.</p>
+<h5 id="additional_info_cname">Query blocked due to a CNAME inspection (status 9, 10, 11)<a class="headerlink" href="#additional_info_cname" title="Permanent link">&para;</a></h5>
+<p>If a query was blocked due to a CNAME inspection (status 9, 10, 11), this field contains the domain which was the reason for blocking the entire CNAME chain (text).</p>
+<h5 id="additional_info_regex">Query blocked due to a REGEX filter (status 4)<a class="headerlink" href="#additional_info_regex" title="Permanent link">&para;</a></h5>
+<p>If a query was blocked due to a regex rule (status 4), this field contains the ID of the blacklist regex responsible for blocking this domain (integer).</p>
+<h5 id="other">Other<a class="headerlink" href="#other" title="Permanent link">&para;</a></h5>
+<p>For any other query status, this field is empty. You should, however, not rely on this field being empty as we may add content of any type for other status types in future releases.</p>
+<h3 id="counters-table">Counters table<a class="headerlink" href="#counters-table" title="Permanent link">&para;</a></h3>
+<p>This table contains counter values integrated over the entire lifetime of the table</p>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Type</th>
+<th>Allowed to by empty</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>No</td>
+<td>ID for the table used to select a counter (see below)</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>integer</td>
+<td>No</td>
+<td>Value of a given counter</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Total number of queries</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Total number of blocked queries</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ftl-table">FTL table<a class="headerlink" href="#ftl-table" title="Permanent link">&para;</a></h3>
+<p>The FTL table contains some data used by <em>FTL</em>DNS for determining which queries to save to the database. This table does not contain any entries of general interest.</p>
+<h3 id="supported-query-types">Supported query types<a class="headerlink" href="#supported-query-types" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Resource Record (a.k.a. query type)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>A</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>AAAA</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>ANY</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>SRV</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>SOA</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>PTR</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>TXT</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>NAPTR</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>MX</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>DS</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>RRSIG</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>DNSKEY</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>NS</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>OTHER</code> (any query type not covered elsewhere)</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>SVCB</code></td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>HTTPS</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="supported-status-types">Supported status types<a class="headerlink" href="#supported-status-types" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Status</th>
+<th></th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Unknown</td>
+<td>❔</td>
+<td>Unknown status (not yet known)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Blocked</td>
+<td>❌</td>
+<td>Domain contained in <a href="../gravity/#gravity-table-gravity">gravity database</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Allowed</td>
+<td>✅</td>
+<td>Forwarded</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Allowed</td>
+<td>✅</td>
+<td>Known, replied to from cache</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Blocked</td>
+<td>❌</td>
+<td>Domain matched by a <a href="../gravity/#regex-table-regex">regex blacklist</a> filter</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Blocked</td>
+<td>❌</td>
+<td>Domain contained in <a href="../gravity/#blacklist-table-blacklist">exact blacklist</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Blocked</td>
+<td>❌</td>
+<td>By upstream server (known blocking page IP address)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Blocked</td>
+<td>❌</td>
+<td>By upstream server (<code>0.0.0.0</code> or <code>::</code>)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Blocked</td>
+<td>❌</td>
+<td>By upstream server (<code>NXDOMAIN</code> with <code>RA</code> bit unset)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Blocked</td>
+<td>❌</td>
+<td>Domain contained in <a href="../gravity/#gravity-table-gravity">gravity database</a><br><em>Blocked during deep CNAME inspection</em></td>
+</tr>
+<tr>
+<td>10</td>
+<td>Blocked</td>
+<td>❌</td>
+<td>Domain matched by a <a href="../gravity/#regex-table-regex">regex blacklist</a> filter<br><em>Blocked during deep CNAME inspection</em></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Blocked</td>
+<td>❌</td>
+<td>Domain contained in <a href="../gravity/#blacklist-table-blacklist">exact blacklist</a><br><em>Blocked during deep CNAME inspection</em></td>
+</tr>
+<tr>
+<td>12</td>
+<td>Allowed</td>
+<td>✅</td>
+<td>Retried query</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Allowed</td>
+<td>✅</td>
+<td>Retried but ignored query (this may happen during ongoing DNSSEC validation)</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Allowed</td>
+<td>✅</td>
+<td>Already forwarded, not forwarding again</td>
+</tr>
+</tbody>
+</table>
+<h3 id="supported-reply-types">Supported reply types<a class="headerlink" href="#supported-reply-types" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Reply type is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><em>unknown</em> (no reply so far)</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>NODATA</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>NXDOMAIN</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>CNAME</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>a valid <code>IP</code> record</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>DOMAIN</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>RRNAME</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>SERVFAIL</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>REFUSED</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>NOTIMP</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>OTHER</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>DNSSEC</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>NONE</code> (query was dropped intentionally)</td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>BLOB</code> (binary data)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dnssec-status">DNSSEC status<a class="headerlink" href="#dnssec-status" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>DNSSEC status is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><em>unknown</em></td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>SECURE</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>INSECURE</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>BOGUS</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>ABANDONED</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="linking-tables">Linking tables<a class="headerlink" href="#linking-tables" title="Permanent link">&para;</a></h3>
+<p>The <code>queries</code> <code>VIEW</code> reads repeating properties from linked tables to reduce both database size and search complexity. These linking tables, <code>domain_by_id</code>, <code>client_by_id</code>, <code>forward_by_id</code>, and <code>addinfo_by_id</code> all have a similar structure:</p>
+<h4 id="domain_by_id"><code>domain_by_id</code><a class="headerlink" href="#domain_by_id" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Type</th>
+<th>Allowed to by empty</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>No</td>
+<td>ID of the entry. Used by <code>query_storage</code></td>
+</tr>
+<tr>
+<td><code>domain</code></td>
+<td>text</td>
+<td>No</td>
+<td>Domain name</td>
+</tr>
+</tbody>
+</table>
+<h4 id="client_by_id"><code>client_by_id</code><a class="headerlink" href="#client_by_id" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Type</th>
+<th>Allowed to by empty</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>No</td>
+<td>ID of the entry. Used by <code>query_storage</code></td>
+</tr>
+<tr>
+<td><code>ip</code></td>
+<td>text</td>
+<td>No</td>
+<td>Client IP address</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>text</td>
+<td>Yes</td>
+<td>Client host name</td>
+</tr>
+</tbody>
+</table>
+<h4 id="forward_by_id"><code>forward_by_id</code><a class="headerlink" href="#forward_by_id" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Type</th>
+<th>Allowed to by empty</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>No</td>
+<td>ID of the entry. Used by <code>query_storage</code></td>
+</tr>
+<tr>
+<td><code>forward</code></td>
+<td>text</td>
+<td>No</td>
+<td>Upstream server identifier (<code>&lt;ipaddr&gt;#&lt;port&gt;</code>)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="addinfo_by_id"><code>addinfo_by_id</code><a class="headerlink" href="#addinfo_by_id" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Type</th>
+<th>Allowed to by empty</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>No</td>
+<td>ID of the entry. Used by <code>query_storage</code></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>integer</td>
+<td>No</td>
+<td>Type of the <code>content</code> field</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td>blob</td>
+<td>No</td>
+<td>Type-dependent content</td>
+</tr>
+</tbody>
+</table>
+<p>Valid <code>type</code> IDs are currently</p>
+<ul>
+<li><code>ADDINFO_CNAME_DOMAIN = 1</code> if <code>content</code> is a CNAME pointer, and</li>
+<li><code>ADDINFO_REGEX_ID = 2</code> if <code>content</code> is an integer ID pointing to a regular expression in <code>gravity.db</code></li>
+</ul>
+<h3 id="example-for-interaction-with-the-long-term-query-database">Example for interaction with the long-term query database<a class="headerlink" href="#example-for-interaction-with-the-long-term-query-database" title="Permanent link">&para;</a></h3>
+<p>In addition to the interactions the Pi-hole database API offers, you can also run your own SQL commands against the database. If you want to obtain the three most queries domains for all time, you could use</p>
+<div class="highlight"><pre><span></span><code>sqlite3 <span class="s2">&quot;/etc/pihole/pihole-FTL.db&quot;</span> <span class="s2">&quot;SELECT domain,count(domain) FROM queries WHERE (STATUS == 2 OR STATUS == 3) GROUP BY domain ORDER BY count(domain) DESC LIMIT 3&quot;</span>
+</code></pre></div>
+<p>which would return something like</p>
+<div class="highlight"><pre><span></span><code>discourse.pi-hole.net|421095
+www.pi-hole.net|132483
+posteo.de|130243
+</code></pre></div>
+<p>showing the domain and the number of times it was found in the long-term database. Note that such a request might take a very long time for computation as the entire history of queries has to be processed for this.</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 1, 2022</span>
+      
+    
+  </small>
+</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div style="display: block">
+  Copyright VSP, Technische Universität Berlin. Licensed under
+  <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"
+    >CC BY-SA 4.0</a
+  >
+  <br />
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    <a href="https://matsim.org/" target="_blank" rel="noopener" title="Website" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M512 256c0 141.4-114.6 256-256 256S0 397.4 0 256 114.6 0 256 0s256 114.6 256 256zM57.71 192.1l9.36 17.3a64.042 64.042 0 0 0 38.03 29.8l57 16.5c18.1 4.9 29.9 20.6 29.9 38.5v39.9c0 11 6.2 21 16 25 9.8 5.8 16 15.8 16 26.8v39c0 15.6 14.9 26.8 29.9 22.5 16.2-4.6 28.6-18.3 32.7-33.7l2.8-11.2c4.2-16.9 15.2-31.4 30.3-40.1l8.1-4.6c15-8.5 24.2-24.4 24.2-41.7v-8.2c0-12.8-5.1-25-14.1-34l-3.8-3.8c-9-9-21.3-15-34-15h-44c-10.2 0-21.2-2-30.9-7.5l-34.5-19.8c-4.3-2.4-7.6-6.4-9.1-11.1-3.2-9.6 1.1-20 10.1-24.6l6-2.9c6.6-3.3 14.2-3.9 20.4-1.5l24.1 7.7c8.1 2.7 17.1-.4 21.9-7.5 4.7-7.1 4.2-16.4-1.2-22.9l-13.6-16.2c-10-12-9.9-29.5.3-41.3l15.7-18.38c8.8-10.27 10.2-24.96 3.5-36.7l-2.4-4.16c-4.3-.17-6.9-.26-10.4-.26-92.9 0-171.6 60.9-198.29 144.1zm379.89-37.6L412 164.8c-15.7 6.3-23.8 23.7-18.5 39.8l16.9 50.7c3.5 10.4 12 18.3 22.6 21l29.2 7.2c1.2-9 1.8-18.2 1.8-27.5 0-36.8-9.6-71.4-26.4-101.5z"/></svg>
+    </a>
+  
+    
+    
+    <a href="https://github.com/matsim-org" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.expand", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.indexes", "navigation.instant", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c44cc438.min.js"></script>
+      
+    
+  </body>
+</html>
