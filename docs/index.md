@@ -1,0 +1,124 @@
+---
+template: blog_list.html
+---
+
+![MATSim Logo](/images/matsim-logo.png)
+
+<div class="row">
+  <div class="col-md-12 text-left">
+    <div class="col-md-4 text-left section-thumb">
+      <h3>
+        <a href="/downloads/">
+          Install
+        </a>
+      </h3>
+      <span class="pull-left">
+        <a href="downloads">
+          <i class="fa fa-cloud-download fa-4x">&nbsp;</i>
+        </a>
+      </span>
+      Install MATSim on your computer.
+    </div>
+    <div class="col-md-4 text-left section-thumb">
+      <h3>
+        <a href="/gallery/">
+          Gallery
+        </a>
+      </h3>
+      <span class="pull-left">
+        <a href="/gallery">
+          <i class="fa fa-globe fa-4x">&nbsp;</i>
+        </a>
+      </span>
+      MATSim is used all over the world! Have a look at the gallery to see how others are using MATSim.
+    </div>
+    <div class="col-md-4 text-left section-thumb">
+      <h3>
+        <a href="/docs/">
+          Documentation
+        </a>
+      </h3>
+      <span class="pull-left">
+        <a href="/docs">
+          <i class="fa fa-book fa-4x">&nbsp;</i>
+        </a>
+      </span>
+      Read up upon MATSim or have a look at the available tutorials to learn how to use MATSim.
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2" id="news"></div>
+    <div class="col-md-4 text-left section-thumb">
+      <h3>
+        <a href="https://github.com/matsim-org/matsim-code-examples/issues">
+          Get Help
+        </a>
+      </h3>
+      <span class="pull-left">
+        <a href="https://github.com/matsim-org/matsim-code-examples/issues">
+          <i class="fa fa-comments fa-4x">&nbsp;</i>
+        </a>
+      </span>
+      Ask your questions on our
+      <br/>
+      <a href="/faq">Q&A platform</a>.
+    </div>
+    <div class="col-md-4 text-left section-thumb">
+      <h3>
+        <a href="/conferences">
+          Conferences &amp; Meetings
+        </a>
+      </h3>
+      <span class="pull-left">
+        <a href="conferences">
+          <i class="fa fa-calendar fa-4x">&nbsp;</i>
+        </a>
+      </span>
+      Upcoming announcements, and archives of previous conferences.</a>
+    </div>
+
+    <!-- Commenting this out for the time being in attempt to point people to rather cloning the matsim-example-project.  kai, oct'17 -->
+    <!-- <div class="col-md-4 text-left section-thumb"> -->
+    <!-- <a href="https://github.com/matsim-org/matsim"> -->
+    <!-- <h3>Open Source</h3></a> -->
+    <!-- <span class="pull-left"><a href="https://github.com/matsim-org/matsim"><i class="fa fa-github fa-4x">&nbsp;</i></a></span> -->
+    <!-- MATSim is open source software written in Java. Visit us <a href="https://github.com/matsim-org/matsim">on GitHub</a> to have a look at the source code. -->
+    <!-- </div> -->
+
+    <div class="col-md-2" id="news"></div>
+
+  </div>
+
+  <div class="col-md-12 text-left" id="news">
+    <br/>
+    <br/>
+    <br/>
+    <a href="/feed/index.xml"><p class="matsim-rss-link">RSS FEED</p></a>
+    <a href="/submit-news/"><p class="matsim-rss-link">SUBMIT NEWS</p></a>
+    <p class="sidebar_title">Latest MATSim News</p>
+  </div>
+
+  <div class="col-md-12 posts">
+    <!-- The news items in _data/news.yml are auto-generated from the CI build script once an hour. -->
+    {% for post in site.posts limit:7 %}
+    <article class="post">
+      <div class="entry">
+        <h4>
+          <a class="news-headline" href="{{ post.url }}">{{ post.title }}</a>
+        </h4>
+        <p class="blog-byline">Posted by {{post.author}} on {{ post.date  | date: "%e %b, %Y" }}</p>
+        {{ post.summary }}
+        <br/>
+        <br/>
+        <a href="{{ post.url }}" class="read-more">&raquo;&nbsp;Read&nbsp;More&hellip;</a>
+      </div>
+      <div class="faint_border"></div>
+    </article>
+    {% endfor %}
+  </div>
+</div>
+
+<br/>
+<br/>
+
+# <b>Latest MATSim News</b>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {{ page.content }}
+
+  <div class="gallery-grid">
+    {% for scenario in config.gallery %}
+      <div class="gallery-grid-cell">
+      <a href="{{ scenario.url }}">
+      <h4>{{ scenario.name }}</h4>
+      <img class="dataset-thumbnail" src="{{ scenario.image }}" width="320" height="180" alt="image"/>
+      </a>
+      </div>
+    {% endfor %}
+  </div>
+
+
+  {% endblock %}
