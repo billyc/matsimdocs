@@ -14,14 +14,14 @@ nav:
       - gallery/index.md
       - 'Dakar, Senegal': gallery/dakar.md
       - 'USA': gallery/usa-nationwide.md
-
-  - Tutorials:
-      - Quick start: tutorials/general.md
+  - Getting Started:
+      - Installation: downloads.md
+      - Tutorials: tutorials/general.md
   - For Users:
       - 'User Guide': userguide/index.md
-      - Extensions: userguide/extensions.md
-      - Analysis Tools: analysis/analysis.md
       - MATSim Book: the-book.md
+      - Extensions: userguide/extensions.md
+      - Analysis Tools: userguide/analysis.md
 
   - For Developers:
       - Setting up your dev environment:
@@ -116,7 +116,7 @@ front_page_buttons:
     blurb: There are many ways to analyze and view MATSim results
     color: '#505'
     icon: .icons/octicons/git-merge-24.svg
-    link: analysis/
+    link: userguide/analysis
 
   - section: Support / Get Help
     blurb: Ask your questions on our Q&A platform

@@ -1,27 +1,10 @@
 ---
-layout: default
-title: Download/Install
+title: Download/Install MATSim
 ---
 
-# Contents
+There are several ways to get up and running using MATSim, listed here. Choose the path which seems most comfortable to you — IDE, the MATSim GUI, or the Maven plugin.
 
-[Use MATSim as a programmer out of an IDE](#programmers)
-
-[Use the MATSim GUI](#gui)
-
-[Use MATSim as a maven plugin](#maven)
-
-[Visualization](#visualization)
-
-[About releases](#releases)
-
-[Benchmark](#benchmark)
-
-# &nbsp; {#programmers}
-
-<!-- (stupid fix so anchor is not underneath page header. :-(  kai) -->
-
-# Use MATSim as a programmer out of an IDE
+## Use MATSim as a programmer out of an IDE
 
 <!-- ### Quickstart -->
 
@@ -67,9 +50,7 @@ Notes:
 
 <!-- - [<i class="fa fa-github"></i> See the code examples on GitHub](https://github.com/matsim-org/matsim-code-examples) -->
 
-# &nbsp; {#gui}
-
-# Use the MATSim GUI
+## Use the MATSim GUI
 
 This "standalone" version is targeted to users who want to use MATSim by editing the input files, including config.xml directly. A basic GUI is provided.
 
@@ -117,9 +98,7 @@ This (= using a development version of MATSim via the GUI) is not recommended an
 </div>
 </div>
 
-# &nbsp; {#maven}
-
-# Use MATSim as a maven plugin
+## Use MATSim as a maven plugin
 
 The "Maven" version is targeted to programmers who know about Maven, and want to include MATSim into an already existing Maven project. Similar to the "MATSim example project" above, the Maven approach will maven-download MATSim, allow you to browse the source code, and keep you up-to-date with releases or snapshots (depending on your pom.xml).
 
@@ -174,9 +153,7 @@ These versions are typically less stable and don't come with up-to-date documena
 </div>
 </div>
 
-# &nbsp; {#visualization}
-
-# Visualization
+## Visualization
 
 When the simulation ran, many files were created in its output
 directory. Note that the GUI has a button to reach the output
@@ -208,9 +185,7 @@ Click on `Add`. As any layer depending on the events, a
 `Load Data` button will appear at the bottom of the layer tag.
 Click it to extract the vehicles' positions from the events.
 
-# &nbsp; {#releases}
-
-# About releases
+## About releases
 
 We normally release together with our summer term class taught at TU Berlin:
 
@@ -220,9 +195,7 @@ We normally release together with our summer term class taught at TU Berlin:
 
 In consequence, the "latest (pre-)release" may be more modern than the "latest stable release".
 
-# &nbsp; {#benchmark}
-
-# <i class="fa fa-tachometer"></i> &nbsp; Benchmark
+## <i class="fa fa-tachometer"></i> &nbsp; Benchmark
 
 [Download Benchmark](/files/benchmark/benchmark.zip) ZIP, ca. 35MB
 

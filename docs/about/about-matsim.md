@@ -35,4 +35,4 @@ The international MATSim community constantly adds new features and improves cur
 
 ### Start using MATSim!
 
-To learn more, look at the [documentation](/docs) or at the [scenario gallery](/gallery) to see how others use MATSim.
+To learn more, look at the [documentation](../userguide/index.md) or at the [scenario gallery](../gallery/index.md) to see how others use MATSim.

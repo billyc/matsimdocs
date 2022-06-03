@@ -9,9 +9,9 @@ title: Scenario Gallery
   MATSim is used all over the world! Have a look how others use MATSim and in what regions they apply it. Learn what data they used and how they prepared their data and processed the output.
 
   <div class="infobox">
-    <a href="/open-scenario-data"><i class="fa fa-2x fa-files-o pull-left"></i></a>&nbsp;
+    <a href="../open-scenario-data.md"><i class="fa fa-2x fa-files-o pull-left"></i></a>&nbsp;
     Some scenario data is freely available.
-    <a href="/open-scenario-data">Have a look!</a>
+    <a href="../open-scenario-data">Have a look!</a>
   </div>
 </div>
 
