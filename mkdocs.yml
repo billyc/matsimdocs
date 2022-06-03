@@ -43,148 +43,178 @@ nav:
   # - FAQ: main/faq.md
   - Community: main/projects.md
   - News:
-    - news/index.md
-    - 2022:
-      - news/2022-05-10-job-opening-sbb.md
-      - news/2022-03-08-job-dresden.md
-      - news/2022-02-10-job-post-boku.md
-      - news/2022-02-10-abm-modelling-uae.md
-    - 2021:
-      - news/2021-12-03-matsim-um.md
-      - news/2021-10-04-job-post-sbb.md
-      - news/2021-06-08-teralytics-job-posting.md
-      - news/2021-06-08-research-position.md
-      - news/2021-05-27-research-position-v.md
-      - news/2021-05-27-research-position-bmvi.md
-      - news/2021-05-27-research-assistant-covid19.md
-      - news/2021-05-03-job-opening-moia.md
-      - news/2021-04-26-PR-labelled-releases.md
-      - news/2021-04-12-matsim-13-released.md
-      - news/2021-02-10-matsim-user-meeting-2021.md
-      - news/2021-01-05-ulco-murdasp.md
-    - 2020:
-      - news/2020-12-07-news-item.md
-      - news/2020-10-30-hermes.md
-      - news/2020-10-08-open-positions-politechnique-montreal.md
-      - news/2020-10-08-episim-berlin.md
-      - news/2020-07-15-matsim-12-released.md
-      - news/2020-03-12-mum-cancelled.md
-      - news/2020-02-19-itm-seattle-2020.md
-      - news/2020-02-13-events-comparison-in-tests.md
-      - news/2020-01-13-jobPostSBB.md
-    - 2019:
-      - news/2019-12-20-matsim-user-meeting-registration.md
-      - news/2019-12-05-matsim-news-now-on-github.md
-      - news/2019-12-02-routing-mode.md
-      - news/2019-11-25-tel-aviv-univ.md
-      - news/2019-10-28-vrije-univ-brussels.md
-      - news/2019-10-04-matsim-user-meeting.md
+      - news/index.md
+      - 2022:
+          - news/2022-05-10-job-opening-sbb.md
+          - news/2022-03-08-job-dresden.md
+          - news/2022-02-10-job-post-boku.md
+          - news/2022-02-10-abm-modelling-uae.md
+      - 2021:
+          - news/2021-12-03-matsim-um.md
+          - news/2021-10-04-job-post-sbb.md
+          - news/2021-06-08-teralytics-job-posting.md
+          - news/2021-06-08-research-position.md
+          - news/2021-05-27-research-position-v.md
+          - news/2021-05-27-research-position-bmvi.md
+          - news/2021-05-27-research-assistant-covid19.md
+          - news/2021-05-03-job-opening-moia.md
+          - news/2021-04-26-PR-labelled-releases.md
+          - news/2021-04-12-matsim-13-released.md
+          - news/2021-02-10-matsim-user-meeting-2021.md
+          - news/2021-01-05-ulco-murdasp.md
+      - 2020:
+          - news/2020-12-07-news-item.md
+          - news/2020-10-30-hermes.md
+          - news/2020-10-08-open-positions-politechnique-montreal.md
+          - news/2020-10-08-episim-berlin.md
+          - news/2020-07-15-matsim-12-released.md
+          - news/2020-03-12-mum-cancelled.md
+          - news/2020-02-19-itm-seattle-2020.md
+          - news/2020-02-13-events-comparison-in-tests.md
+          - news/2020-01-13-jobPostSBB.md
+      - 2019:
+          - news/2019-12-20-matsim-user-meeting-registration.md
+          - news/2019-12-05-matsim-news-now-on-github.md
+          - news/2019-12-02-routing-mode.md
+          - news/2019-11-25-tel-aviv-univ.md
+          - news/2019-10-28-vrije-univ-brussels.md
+          - news/2019-10-04-matsim-user-meeting.md
+
+front_page_buttons:
+  - section: Gallery
+    blurb: MATSim is used all over the world! Have a look at the gallery to see how others are using MATSim
+    color: '#704'
+    icon: .icons/octicons/globe-24.svg
+    link: gallery/
+
+  - section: Documentation
+    blurb: Read up upon MATSim or have a look at the available tutorials to learn how to use MATSim
+    color: '#074'
+    icon: .icons/octicons/book-24.svg
+    link: docs/
+
+  - section: Install
+    blurb: Install MATSim on your computer
+    color: '#047'
+    icon: .icons/octicons/download-24.svg
+    link: downloads/
+
+  - section: Conferences & Meetings
+    blurb: Upcoming announcements, and archives of previous conferences
+    color: '#752'
+    icon: .icons/octicons/megaphone-24.svg
+    link: conferences/
+
+  - section: Support / Get Help
+    blurb: Ask your questions on our Q&A platform
+    color: '#626'
+    icon: .icons/octicons/question-24.svg
+    link: https://github.com/matsim-org/matsim-code-examples/issues
 
 gallery:
-  - name: "Dakar, Senegal"
+  - name: 'Dakar, Senegal'
     url: dakar
     image: dakar_thumb.png
 
-  - name: "USA"
+  - name: 'USA'
     url: usa-nationwide
     image: usa-nationwide_thumb.jpg
 
-  - name: "Open Île-de-France, France"
+  - name: 'Open Île-de-France, France'
     url: ile_de_france
     image: ile_de_france_thumb.png
 
-  - name: "Paris, France"
+  - name: 'Paris, France'
     url: paris
     image: paris_thumb.jpg
 
-  - name: "Sweden"
+  - name: 'Sweden'
     url: sweden
     image: sweden_thumb.png
 
-  - name: "Santiago, Chile"
+  - name: 'Santiago, Chile'
     url: santiago
     image: santiago_thumb.jpg
 
-  - name: "Quito, Ecuador"
+  - name: 'Quito, Ecuador'
     url: quito
     image: quito_thumb.jpg
 
-  - name: "Vorarlberg, Austria"
+  - name: 'Vorarlberg, Austria'
     url: vorarlberg
     image: vorarlberg_thumb.png
 
-  - name: "Poznan, Poland"
+  - name: 'Poznan, Poland'
     url: poznan
     image: poznan_thumb.jpg
 
-  - name: "Germany"
+  - name: 'Germany'
     url: germany
     image: germany_thumb.jpg
 
-  - name: "Seoul, South Korea"
+  - name: 'Seoul, South Korea'
     url: seoul
     image: seoul_thumb.png
 
-  - name: "Singapore"
+  - name: 'Singapore'
     url: singapore
     image: singapore_thumb.jpg
 
-  - name: "Freight in South Africa"
+  - name: 'Freight in South Africa'
     url: south-africa
     image: safrica_thumb.jpg
 
-  - name: "Tel Aviv, Israel"
+  - name: 'Tel Aviv, Israel'
     url: telaviv
     image: telaviv_thumb.jpg
 
-  - name: "Berlin, Germany"
+  - name: 'Berlin, Germany'
     url: berlin
     image: berlin_thumb.jpg
 
-  - name: "Air Traffic over Europe"
+  - name: 'Air Traffic over Europe'
     url: air-traffic
     image: airtraffic_thumb.jpg
 
-  - name: "Zurich, Switzerland"
+  - name: 'Zurich, Switzerland'
     url: zurich
     image: zurich_thumb.jpg
 
-  - name: "Munich, Germany"
+  - name: 'Munich, Germany'
     url: munich
     image: munich_thumb.jpg
 
-  - name: "Gauteng, South Africa"
+  - name: 'Gauteng, South Africa'
     url: gauteng
     image: gauteng_thumb.png
 
-  - name: "Padang, Indonesia"
+  - name: 'Padang, Indonesia'
     url: padang
     image: padang_thumb.jpg
 
-  - name: "Joinville, Brazil"
+  - name: 'Joinville, Brazil'
     url: joinville
     image: joinville_thumb.jpg
 
-  - name: "Izmir, Turkey"
+  - name: 'Izmir, Turkey'
     url: izmir
     image: izmir_thumb.jpg
 
-  - name: "Toronto, Canada"
+  - name: 'Toronto, Canada'
     url: toronto
     image: toronto_thumb.jpg
 
-  - name: "Sioux Falls, SD, USA"
+  - name: 'Sioux Falls, SD, USA'
     url: sioux-falls
     image: sioux_falls_thumb.jpg
 
-  - name: "Aliaga, Turkey"
+  - name: 'Aliaga, Turkey'
     url: aliaga
     image: aliaga_thumb.jpg
 
-  - name: "Caracas, Venezuela"
+  - name: 'Caracas, Venezuela'
     url: caracas
     image: caracas_thumb.jpg
-
 
 theme:
   name: 'material'
@@ -198,13 +228,13 @@ theme:
     text: 'Source Sans Pro'
     code: 'Roboto Mono'
   features:
-    - navigation.expand
+    # - navigation.expand
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.top
     - navigation.indexes
     - navigation.instant
-    # - navigation.sections
+    - navigation.sections
     - search.suggest
     - search.highlight
     - search.share
@@ -263,6 +293,9 @@ markdown_extensions:
   # Metadata support in pages
   # (https://squidfunk.github.io/mkdocs-material/extensions/metadata/)
   - meta
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 extra:
   blog:
