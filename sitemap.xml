@@ -26,11 +26,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://billyc.github.io/matsimdocs/impressum/</loc>
-         <lastmod>2022-06-03</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://billyc.github.io/matsimdocs/javadoc/</loc>
          <lastmod>2022-06-03</lastmod>
          <changefreq>daily</changefreq>
@@ -57,6 +52,16 @@
     </url>
     <url>
          <loc>https://billyc.github.io/matsimdocs/about/about-us/</loc>
+         <lastmod>2022-06-03</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://billyc.github.io/matsimdocs/about/impressum/</loc>
+         <lastmod>2022-06-03</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://billyc.github.io/matsimdocs/analysis/analysis/</loc>
          <lastmod>2022-06-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -192,11 +197,6 @@
     </url>
     <url>
          <loc>https://billyc.github.io/matsimdocs/devguide/eclipse/jdk/</loc>
-         <lastmod>2022-06-03</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://billyc.github.io/matsimdocs/extensions/</loc>
          <lastmod>2022-06-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -517,6 +517,11 @@
     </url>
     <url>
          <loc>https://billyc.github.io/matsimdocs/userguide/</loc>
+         <lastmod>2022-06-03</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://billyc.github.io/matsimdocs/userguide/extensions/</loc>
          <lastmod>2022-06-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
