@@ -1,4 +1,4 @@
-site_name: 'MATSim'
+site_name: ''
 site_url: 'https://billyc.github.io/matsimdocs'
 repo_url: 'https://github.com/billyc/matsimdocs'
 edit_uri: 'edit/master/docs/'
@@ -6,16 +6,23 @@ remote_branch: gh-pages
 copyright:
 
 nav:
-  - Home: index.md
-  - Gallery: gallery/index.md
+  - Home:
+      - index.md
+      - About MATSim: about/about-matsim.md
+      - Impressum: about/impressum.md
+  - Gallery:
+      - gallery/index.md
+      - 'Dakar, Senegal': gallery/dakar.md
+      - 'USA': gallery/usa-nationwide.md
+
   - Tutorials:
       - Quick start: tutorials/general.md
   - For Users:
-      - 'User Guide'
-      - Extensions
-      - MATSim Book
-      - 'Q & A'
-      - Community pages
+      - 'User Guide': userguide/index.md
+      - Extensions: userguide/extensions.md
+      - Analysis Tools: analysis/analysis.md
+      - MATSim Book: the-book.md
+
   - For Developers:
       - Setting up your dev environment:
           - IDE configuration: devguide/ide-configuration.md
@@ -40,8 +47,8 @@ nav:
       - Issue Tracker
       - Build Server
       - MATSim Community Pages
-  # - FAQ: main/faq.md
-  - Community: main/projects.md
+  - Community:
+      - about/about-us.md
   - News:
       - news/index.md
       - 2022:
@@ -104,6 +111,12 @@ front_page_buttons:
     color: '#752'
     icon: .icons/octicons/megaphone-24.svg
     link: conferences/
+
+  - section: Analysis Tools
+    blurb: There are many ways to analyze and view MATSim results
+    color: '#505'
+    icon: .icons/octicons/git-merge-24.svg
+    link: analysis/
 
   - section: Support / Get Help
     blurb: Ask your questions on our Q&A platform
@@ -222,19 +235,19 @@ theme:
   #  icon:
   #    repo: fontawesome/brands/github-alt
   favicon: 'images/favicon.ico'
-  logo: 'images/logo.svg'
+  logo: 'images/matsim-logo-white-trimmed.png'
   language: 'en'
   font:
     text: 'Source Sans Pro'
     code: 'Roboto Mono'
   features:
-    # - navigation.expand
+    - navigation.expand
     - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.top
+    # - navigation.tabs.sticky
+    # - navigation.top
     - navigation.indexes
     - navigation.instant
-    - navigation.sections
+    # - navigation.sections
     - search.suggest
     - search.highlight
     - search.share

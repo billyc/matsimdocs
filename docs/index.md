@@ -1,11 +1,11 @@
 ---
 template: front_page.html
-title: Welcome to MATSIim
+title: Welcome to MATSim
 ---
 
 !!! info "MATSim 13.0 released"
 
-    [MATSim 13.0](news/2021-04-12-matsim-13-released/) was released and brings a number of improvements.
+    [MATSim 13.0](news/2021-04-12-matsim-13-released/) now available, and brings a number of improvements. Read the [announcement](news/2021-04-12-matsim-13-released/)!
 
 <p style="font-size: 4em; line-height: 2rem; font-weight: bold; color: var(--md-default-fg-color--light);">Welcome to MATSim</p>
 

@@ -1,6 +1,6 @@
 ---
 template: gallery.html
-title: Scenarios
+title: Scenario Gallery
 ---
 
 # Scenario Gallery
@@ -23,4 +23,3 @@ Do you have a scenario and want to present it here as well? Feel free to
 <a href="mailto:info@matsim.org">contact us</a> so we can add it!
 
 ---
-
