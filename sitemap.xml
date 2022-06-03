@@ -61,11 +61,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://billyc.github.io/matsimdocs/analysis/analysis/</loc>
-         <lastmod>2022-06-03</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://billyc.github.io/matsimdocs/content/2016-matsim-class-tu-berlin-matsim-version-08x/</loc>
          <lastmod>2022-06-03</lastmod>
          <changefreq>daily</changefreq>
@@ -517,6 +512,11 @@
     </url>
     <url>
          <loc>https://billyc.github.io/matsimdocs/userguide/</loc>
+         <lastmod>2022-06-03</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://billyc.github.io/matsimdocs/userguide/analysis/</loc>
          <lastmod>2022-06-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
