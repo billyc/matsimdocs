@@ -1,8 +1,8 @@
 ---
 title: "Zurich, Switzerland"
-thumbnail: /gallery/zurich_thumb.png
+thumbnail: /gallery/zurich_thumb.jpg
 layout: scenario
-  
+
 ---
 
 Zurich is the largest city of Switzerland with around 380,000 inhabitants (June 2008). More than 1 million people live in the metropolitan area of Zurich, which is much larger than the city itself, while Switzerland has a total population of about 7.5 million people.

@@ -1,8 +1,8 @@
 ---
 title: "Berlin, Germany"
-thumbnail: /gallery/berlin_thumb.png
+thumbnail: /gallery/berlin_thumb.jpg
 layout: scenario
-  
+
 image1:
   image: /gallery/berlin_1.jpg
   caption: "Traffic and Public Transit in Berlin"

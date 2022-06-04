@@ -1,6 +1,6 @@
 ---
 title: "Munich, Germany"
-thumbnail: /gallery/munich_thumb.png
+thumbnail: /gallery/munich_thumb.jpg
 layout: scenario
 
 ---

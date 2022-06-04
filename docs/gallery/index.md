@@ -13,13 +13,15 @@ title: Scenario Gallery
     Some scenario data is freely available.
     <a href="../open-scenario-data">Have a look!</a>
   </div>
+
 </div>
 
 <div class="col-md-6">
-  <a href="../images/matsim-locations-full.png" title="See the world map in large!"><img width="100%" class="dataset-thumbnail" src="../images/matsim-locations.png" /></a>
+  <a href="../images/matsim-locations-full.png" title="See the world map in fullsize">
+    <img width="100%" class="dataset-thumbnail" src="../images/matsim-locations.png" />
+  </a>
 </div>
 
-Do you have a scenario and want to present it here as well? Feel free to
-<a href="mailto:info@matsim.org">contact us</a> so we can add it!
+Do you have a scenario and wish to present it here as well? Please [contact us](mailto:info@matsim.org) so we can add it!
 
 ---

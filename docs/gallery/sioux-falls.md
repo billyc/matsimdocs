@@ -1,12 +1,12 @@
 ---
 title: "Sioux Falls, SD, USA"
-thumbnail: /gallery/sioux_falls_thumb.png
+thumbnail: /gallery/sioux_falls_thumb.jpg
 layout: scenario
 
 image1:
   image: /gallery/sioux_falls_1.jpg
   caption: "Left: road network, transit lines and stops, and buildings. Right: agents performing different activities shown with different colors."
-  
+
 ---
 
 {% include image.html image=page.image1 %}

@@ -1,6 +1,6 @@
 ---
 title: "Toronto, Canada"
-thumbnail: /gallery/toronto_thumb.png
+thumbnail: /gallery/toronto_thumb.jpg
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 title: "Aliaga, Turkey"
-thumbnail: /gallery/aliaga_thumb.png
+thumbnail: /gallery/aliaga_thumb.jpg
 layout: scenario
 
 image1:
@@ -10,7 +10,7 @@ image1:
 image2:
   image: /gallery/aliaga_2.jpg
   caption: "Evacuation scenario 2 for Aliaga, Turkey"
-  
+
 ---
 {% include image.html image=page.image1 %}
 

@@ -1,6 +1,6 @@
 ---
 title: "Poznan, Poland"
-thumbnail: /gallery/poland_thumb.jpg
+thumbnail: /gallery/poznan_thumb.jpg
 layout: scenario
 
 ---

@@ -1,17 +1,8 @@
 ---
 title: "Joinville, Brazil"
-thumbnail: /gallery/joinville_thumb.png
-layout: scenario
-
-image1:
-  image: /gallery/joinville_1.jpg
-  caption: "Events using Via"
-
-image2:
-  image: /gallery/joinville_2.jpg
-  caption: "Comparison of Joinville simulated and count data"
-    
+thumbnail: /gallery/joinville_thumb.jpg
 ---
+
 [Joinville](https://www.joinville.sc.gov.br/) is a mid-sized industrial city in the south of Brazil with around 550.000 inhabitants. It has a large workforce, including from its neighbouring cities. As it has an intense industrial activity profile, companies work often in three shifts, which cause peculiar traffic patterns. Besides this, it is common to have people with 12-hour routines considering work and higher education.
 
 The Joinville traffic model was built as an initial step of a project that intends to simulate the entire northeast region of Santa Catarina State, including air traffic, shipping, state highways and neighbouring cities. The aim of the project is a wide comprehension of people and freight movement on the region. The urban Joinville model is on its first version now and was produced as a graduation thesis at the [Federal University of Santa Catarina (UFSC)](http://ufsc.br/), course of [Transportation and Logistics Engineering](http://transporteslogistica.joinville.ufsc.br/).
@@ -24,9 +15,10 @@ For now the model runs only with cars. The model used a full sample of the popul
 
 Figure 1 shows a screenshot of the Events using [Via](http://via.senozon.com/).
 
-{% include image.html image=page.image1 %}
+![Events using Via](joinville_1.jpg)
+<br/>Figure 1. Events using Via
 
 Figure 2 shows the comparison between simulated and count data for 20 links in the morning peak from 7 to 8 AM. The count data available for comparison is still sparse which could not provide us with a good measure of success. We know that calibration is needed for the next versions of the model. The good news is that the local authorities are installing over a hundred counting stations throughout the city within the next couple months and a new travel survey will be held this year.
 
-{% include image.html image=page.image2 %}
-
+![Comparison of Joinville simulated and count data](joinville_2.jpg)
+<br/>Figure 2. Comparison of Joinville simulated and count data

@@ -1,6 +1,6 @@
 ---
 title: "Izmir, Turkey"
-thumbnail: /gallery/izmir_thumb.png
+thumbnail: /gallery/izmir_thumb.jpg
 layout: scenario
 
 image1:
@@ -10,7 +10,7 @@ image1:
 image2:
   image: /gallery/izmir_2.jpg
   caption: "Three gulf crossing scenarios for Izmir, Turkey"
-    
+
 ---
 {% include image.html image=page.image1 %}
 
@@ -24,6 +24,6 @@ Best gulf crossing scenario is determined using simulation results, choosing the
 
 #### Research paper
 
-- MATSim-T Urban Traffic Simulation for Izmir, TURKEY. MUTLU, M. Metin, Graduation Thesis in Civil Engineering. 
+- MATSim-T Urban Traffic Simulation for Izmir, TURKEY. MUTLU, M. Metin, Graduation Thesis in Civil Engineering.
 Supervisor: ALVER, Yalçın, Assistant Prof. Dr., February 2010
 

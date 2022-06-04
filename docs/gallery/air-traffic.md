@@ -1,6 +1,6 @@
 ---
 title: "Air Traffic over Europe"
-thumbnail: /gallery/airtraffic_thumb.png
+thumbnail: /gallery/airtraffic_thumb.jpg
 layout: scenario
 
 ---

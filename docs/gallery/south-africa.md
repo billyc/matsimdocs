@@ -1,6 +1,6 @@
 ---
 title: "Freight in South Africa"
-thumbnail: /gallery/safrica_thumb.png
+thumbnail: /gallery/safrica_thumb.jpg
 layout: scenario
 
 ---

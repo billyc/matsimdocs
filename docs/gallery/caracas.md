@@ -1,12 +1,12 @@
 ---
 title: "Caracas, Venezuela"
-thumbnail: /gallery/caracas_thumb.png
+thumbnail: /gallery/caracas_thumb.jpg
 layout: scenario
 
 image1:
   image: /gallery/caracas_1.jpg
   caption: "Build-up of traffic over time in Caracas"
-  
+
 ---
 
 {% include image.html image=page.image1 %}
