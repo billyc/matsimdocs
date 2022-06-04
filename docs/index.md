@@ -1,6 +1,8 @@
 ---
-template: front_page.html
-title: Welcome to MATSim
+template: home.html
+title: 'matsim.org'
+# announcement: "will be at the top of the home page"
+# announcement: '💡 <a href="news/2021-04-12-matsim-13-released">MATSim 13.0</a> released with a number of improvements. Read the <a href="news/2021-04-12-matsim-13-released">announcement</a>.'
 ---
 
 <!-- !!! info "MATSim 13.0 released"

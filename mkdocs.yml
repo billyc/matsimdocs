@@ -1,9 +1,9 @@
-site_name: "matsim.org"
-site_description: "Official website for the MATSim agent-based transport simulation framework"
-site_url: "https://billyc.github.io/matsimdocs"
-repo_url: "https://github.com/billyc/matsimdocs"
+site_name: 'matsim.org'
+site_description: 'Official website for the MATSim agent-based transport simulation framework'
+site_url: 'https://billyc.github.io/website-next'
+repo_url: 'https://github.com/billyc/website-next'
 repo_name: GitHub
-edit_uri: "edit/master/docs/"
+edit_uri: 'edit/master/docs/'
 remote_branch: gh-pages
 
 nav:
@@ -13,38 +13,38 @@ nav:
       - Impressum: about/impressum.md
   - Gallery:
       - gallery/index.md
-      - "Dakar, Senegal": gallery/dakar.md
-      - "USA": gallery/usa-nationwide.md
-      - "Open Île-de-France, France": gallery/ile_de_france.md
-      - "Paris, France": gallery/paris.md
-      - Sweden: gallery/sweden.md
-      - "Santiago, Chile": gallery/santiago.md
-      - "Quito, Ecuador": gallery/quito.md
-      - "Vorarlberg, Austria": gallery/vorarlberg.md
-      - "Poznan, Poland": gallery/poznan.md
-      - "Germany": gallery/germany.md
-      - "Seoul, South Korea": gallery/seoul.md
-      - "Singapore": gallery/singapore.md
-      - "Freight in South Africa": gallery/south-africa.md
-      - "Tel Aviv, Israel": gallery/telaviv.md
-      - "Berlin, Germany": gallery/berlin.md
-      - "Air Traffic over Europe": gallery/air-traffic.md
-      - "Zurich, Switzerland": gallery/zurich.md
-      - "Munich, Germany": gallery/munich.md
-      - "Gauteng, South Africa": gallery/gauteng.md
-      - "Padang, Indonesia": gallery/padang.md
-      - "Joinville, Brazil": gallery/joinville.md
-      - "Izmir, Turkey": gallery/izmir.md
-      - "Toronto, Canada": gallery/toronto.md
-      - "Sioux Falls, SD, USA": gallery/sioux-falls.md
-      - "Aliaga, Turkey": gallery/aliaga.md
-      - "Caracas, Venezuela": gallery/caracas.md
+      - 'Dakar, Senegal': gallery/dakar.md
+      - 'USA': gallery/usa-nationwide.md
+      - 'Open Île-de-France, France': gallery/ile_de_france.md
+      - 'Paris, France': gallery/paris.md
+      - 'Sweden': gallery/sweden.md
+      - 'Santiago, Chile': gallery/santiago.md
+      - 'Quito, Ecuador': gallery/quito.md
+      - 'Vorarlberg, Austria': gallery/vorarlberg.md
+      - 'Poznan, Poland': gallery/poznan.md
+      - 'Germany': gallery/germany.md
+      - 'Seoul, South Korea': gallery/seoul.md
+      - 'Singapore': gallery/singapore.md
+      - 'Freight in South Africa': gallery/south-africa.md
+      - 'Tel Aviv, Israel': gallery/telaviv.md
+      - 'Berlin, Germany': gallery/berlin.md
+      - 'Air Traffic over Europe': gallery/air-traffic.md
+      - 'Zurich, Switzerland': gallery/zurich.md
+      - 'Munich, Germany': gallery/munich.md
+      - 'Gauteng, South Africa': gallery/gauteng.md
+      - 'Padang, Indonesia': gallery/padang.md
+      - 'Joinville, Brazil': gallery/joinville.md
+      - 'Izmir, Turkey': gallery/izmir.md
+      - 'Toronto, Canada': gallery/toronto.md
+      - 'Sioux Falls, SD, USA': gallery/sioux-falls.md
+      - 'Aliaga, Turkey': gallery/aliaga.md
+      - 'Caracas, Venezuela': gallery/caracas.md
 
   - Getting Started:
       - Installation: downloads.md
       - Tutorials: tutorials/general.md
   - For Users:
-      - "User Guide": userguide/index.md
+      - 'User Guide': userguide/index.md
       - MATSim Book: the-book.md
       - Extensions: userguide/extensions.md
       - Analysis Tools: userguide/analysis.md
@@ -115,55 +115,55 @@ nav:
 front_page_buttons:
   - section: Gallery
     blurb: MATSim is used all over the world! Have a look at the gallery to see how others are using MATSim
-    color: "#704"
+    color: '#704'
     icon: .icons/octicons/globe-24.svg
     link: gallery/
 
   - section: Documentation
     blurb: Read up upon MATSim or have a look at the available tutorials to learn how to use MATSim
-    color: "#074"
+    color: '#074'
     icon: .icons/octicons/book-24.svg
     link: docs/
 
   - section: Install
     blurb: Install MATSim on your computer
-    color: "#047"
+    color: '#047'
     icon: .icons/octicons/download-24.svg
     link: downloads/
 
   - section: Conferences & Meetings
     blurb: Upcoming announcements, and archives of previous conferences
-    color: "#752"
+    color: '#752'
     icon: .icons/octicons/megaphone-24.svg
     link: conferences/
 
   - section: Analysis Tools
     blurb: There are many ways to analyze and view MATSim results
-    color: "#505"
+    color: '#505'
     icon: .icons/octicons/git-merge-24.svg
     link: userguide/analysis
 
   - section: Support / Get Help
     blurb: Ask your questions on our Q&A platform
-    color: "#626"
+    color: '#626'
     icon: .icons/octicons/question-24.svg
     link: https://github.com/matsim-org/matsim-code-examples/issues
 
 theme:
-  name: "material"
+  name: 'material'
   custom_dir: overrides
   #  icon:
   #    repo: fontawesome/brands/github-alt
-  favicon: "images/favicon.ico"
-  logo: "images/matsim-logo-white-trimmed.png"
-  language: "en"
+  favicon: 'images/favicon.png'
+  logo: 'images/matsim-logo-white-trimmed.png'
+  language: 'en'
   font:
-    text: "Source Sans Pro"
-    code: "Roboto Mono"
+    text: 'Source Sans Pro'
+    code: 'Roboto Mono'
   features:
     - navigation.expand
     - navigation.tabs
-    # - navigation.tabs.sticky
+    - navigation.tabs.sticky
     # - navigation.top
     - navigation.indexes
     - navigation.instant
@@ -173,8 +173,7 @@ theme:
     - search.share
   palette:
     # Light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
+    - scheme: default
       primary: indigo
       accent: indigo
       toggle:
@@ -182,8 +181,7 @@ theme:
         name: Switch to dark mode
 
     # Dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
+    - scheme: slate
       primary: indigo
       accent: indigo
       toggle:
@@ -235,13 +233,13 @@ extra:
     dir: news
     list_length: 8
     extended_preview: false
-  social:
-    - icon: fontawesome/solid/earth-americas
-      link: https://matsim.org/
-      name: Website
-    - icon: fontawesome/brands/github
-      link: https://github.com/matsim-org/matsim-libs
-      name: GitHub
+  # social:
+  #   - icon: fontawesome/solid/earth-americas
+  #     link: https://matsim.org/
+  #     name: Website
+  #   - icon: fontawesome/brands/github
+  #     link: https://github.com/matsim-org/matsim-libs
+  #     name: GitHub
 
 extra_css:
   - extra.css
@@ -252,6 +250,9 @@ plugins:
   - git-revision-date-localized
   - redirects:
       redirect_maps:
-        "ftldns/database.md": database/index.md
-        "main/presentations.md": index.md
-        "main/prerequesites.md": main/prerequisites.md
+        'ftldns/database.md': database/index.md
+        'main/presentations.md': index.md
+        'main/prerequesites.md': main/prerequisites.md
+
+watch:
+  - overrides

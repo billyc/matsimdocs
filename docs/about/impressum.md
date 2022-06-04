@@ -13,7 +13,7 @@ Straße des 17. Juni 135
 
 10623 Berlin
 
-[www.tu-berlin.de](www.tu-berlin.de)
+[www.tu-berlin.de](https://www.tu-berlin.de)
 
 #### Legal Supervision
 
@@ -45,7 +45,7 @@ Fax: +49 (0)30 314-23909
 
 Central Campus Management (ZECM)
 
-[www.campusmanagement.tu-berlin.de](www.campusmanagement.tu-berlin.de)
+[www.campusmanagement.tu-berlin.de](https://www.campusmanagement.tu-berlin.de)
 
 #### IT Guidelines of the TU Berlin
 
