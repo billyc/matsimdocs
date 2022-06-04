@@ -4,6 +4,51 @@
   object-fit: cover;
 }
 
+b {
+  font-weight: bold;
+}
+
+.matsim-key-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.matsim-key-feature {
+  padding: 0rem 0rem;
+  display: flex;
+  flex-direction: row;
+  margin: 0 1.25rem 0 0;
+}
+
+.matsim-key-feature-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.matsim-key-feature h2 {
+  background-color: #eee;
+  min-height: 2.5rem;
+  min-width: 2.5rem;
+  margin-right: 0.75rem;
+  margin-bottom: auto;
+  padding: 0.4rem 0.4rem;
+  border-radius: 2.5rem;
+  text-align: center;
+}
+
+.matsim-key-feature-details h3 {
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.25rem;
+}
+
+.matsim-key-feature-details p {
+  line-height: 1.1rem !important;
+  margin-bottom: 0rem;
+}
+
 .matsim-announcement {
   background-color: #82aee0; /* #a1b1e3; */
   padding: 0.75rem 12px;
@@ -50,6 +95,17 @@
   color: #2f89b9;
 }
 
+.matsim-footer-copyright {
+  font-size: 0.7rem;
+  width: 100%;
+  margin: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.matsim-footer-copyright p {
+  color: #888 !important;
+  line-height: 0.8rem !important;
+}
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -67,6 +123,11 @@
 
   .matsim-lead-in {
     flex-direction: column-reverse;
+  }
+
+  .matsim-key-features {
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -89,7 +150,7 @@
 
 .gallery-grid-cell img {
   border: 1px solid #88888833;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 .gallery-grid-cell img:hover {
