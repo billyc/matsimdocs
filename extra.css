@@ -4,6 +4,23 @@
   object-fit: cover;
 }
 
+.matsim-announcement {
+  background-color: #82aee0; /* #a1b1e3; */
+  padding: 0.75rem 12px;
+  margin: 0 16px;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.matsim-announcement a {
+  font-weight: bold;
+  color: #e0ffad; /* #e9f67a; */
+}
+
+.matsim-announcement a:hover {
+  color: #b3f24f; /* #e9f67a; */
+}
+
 .matsim-feature-sections {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -47,6 +64,10 @@
   .matsim-feature-sections {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .matsim-lead-in {
+    flex-direction: column-reverse;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -59,6 +80,7 @@
     flex-direction: column;
   }
 }
+
 .gallery-grid-cell {
   display: flex;
   flex-direction: column;
