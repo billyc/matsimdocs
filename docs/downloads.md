@@ -1,6 +1,4 @@
----
-title: Download/Install MATSim
----
+# Download/Install MATSim
 
 There are several ways to get up and running using MATSim, listed here. Choose the path which seems most comfortable to you — IDE, the MATSim GUI, or the Maven plugin.
 
