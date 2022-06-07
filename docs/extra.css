@@ -48,6 +48,7 @@ b {
 }
 
 .matsim-key-feature-details h3 {
+  color: #2f2f89;
   font-weight: bold;
   font-size: 1.2rem;
   padding-top: 0.5rem;
@@ -58,6 +59,10 @@ b {
 .matsim-key-feature-details p {
   line-height: 1.1rem !important;
   margin-bottom: 0rem;
+}
+
+.matsim-key-feature-icon {
+  color: var(--md-primary-fg-color);
 }
 
 .matsim-announcement {
@@ -144,6 +149,10 @@ b {
   .matsim-logo-hero {
     margin: 1.5rem 0 2rem 0;
     text-align: left;
+  }
+
+  .hero-video {
+    object-fit: none;
   }
 }
 
