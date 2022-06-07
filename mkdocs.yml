@@ -1,8 +1,8 @@
 site_name: 'matsim.org'
 site_description: 'Official website for the MATSim agent-based transport simulation framework'
 site_url: 'https://billyc.github.io/website-next'
-repo_url: 'https://github.com/billyc/website-next'
-repo_name: GitHub
+#repo_url: 'https://github.com/billyc/website-next'
+#repo_name: GitHub
 edit_uri: 'edit/master/docs/'
 remote_branch: gh-pages
 
