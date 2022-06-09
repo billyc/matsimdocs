@@ -14,7 +14,7 @@ This site uses MkDocs which requires a recent install of Python.
 - Clone the repo
 - Run `pip install -r requirements.txt`
 - Then you can run a local server with `mkdocs serve` so you can edit files and test/review changes before publishing
-- Any changes you push to the master branch will be build automatically using Github Actions
+- Any changes you push to the master branch will be built and published automatically using Github Actions
 
 Important files and folders:
 - `mkdocs.yml` contains all of the site navigation, settings, and theme
