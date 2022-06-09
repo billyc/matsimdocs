@@ -2,7 +2,6 @@
 
 This uses [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/), a Markdown-based static site generator.
 
-To add a news item, 
 - You can edit markdown files in the `docs` folder directly to update the site. Edits gladly accepted!
 - Or follow instructions below to build it locally on your computer:
 
