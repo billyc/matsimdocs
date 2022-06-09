@@ -1,78 +1,26 @@
-<p align="center">
-    <a href="https://pi-hole.net/">
-        <img src="https://pi-hole.github.io/graphics/Vortex/Vortex_with_Wordmark.svg" width="150" height="260" alt="Pi-hole">
-    </a>
-    <br>
-    <strong>Network-wide ad blocking via your own Linux hardware</strong>
-</p>
+# MATSim website source
 
-The Pi-hole[®](https://pi-hole.net/trademark-rules-and-brand-guidelines/) is a [DNS sinkhole](https://en.wikipedia.org/wiki/DNS_Sinkhole) that protects your devices from unwanted content, without installing any client-side software.
+This uses [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/), a Markdown-based static site generator.
 
-## Documentation & User Guides
+To add a news item, 
+- You can edit markdown files in the `docs` folder directly to update the site. Edits gladly accepted!
+- Or follow instructions below to build it locally on your computer:
 
-This repo is the source for the official [Pi-hole documentation](https://docs.pi-hole.net/).
+To add a news item, copy one of the pages in `docs/news`, rename to have the correct date and a useful filename, and edit the content header and news items as needed.
 
-### How to contribute
+### Building locally
 
-To add a new link on the navigation panel you need to edit the `mkdocs.yml` file in the root of the repo. There is a guide for building the navbar [on the mkdocs wiki](https://www.mkdocs.org/user-guide/configuration/#nav)
+This site uses MkDocs which requires a recent install of Python.
 
-To add a new document or guide.
+- Clone the repo
+- Run `pip install -r requirements.txt`
+- Then you can run a local server with `mkdocs serve` so you can edit files and test/review changes before publishing
+- Any changes you push to the master branch will be build automatically using Github Actions
 
-- Navigate to the directory where it will be hosted.
-    E.g. guides are in `docs/guides`
-- Create the file using a URL friendly filename.
-    E.g. `docs/guides/url-friendly.md`
-- Edit your document using Markdown, there are loads of resources available for the correct syntax.
+Important files and folders:
+- `mkdocs.yml` contains all of the site navigation, settings, and theme
+- `docs` folder has all of the markdown content files
+- `docs/news` contains all news/blog items. 
+- `extra.css` has our matsim.org styling such as front page layout, colors, etc
+- `overrides` has HTML templates for home page, gallery, news pages, etc
 
-### Testing your changes
-
-When working on this repo, it is advised that you review your changes locally before committing them. The `mkdocs serve` command can be used to live preview your changes (as you type) on your local machine.
-
-Please make sure you fork the repo and change the clone URL in the example below for your fork:
-
-- Linux Mint / Ubuntu 18.04 LTS / 19.10 / 20.04 LTS:
-    - Preparations (only required once):
-
-    ```bash
-    git clone https://github.com/YOUR-USERNAME/docs
-    cd docs
-    sudo apt install python3-pip
-    pip3 install -r requirements.txt
-    ```
-
-    - Running the docs server:
-
-    ```bash
-    mkdocs serve --dev-addr 0.0.0.0:8000
-    ```
-
-- Fedora Linux instructions (tested on Fedora Linux 28):
-    - Preparations (only required once):
-
-    ```bash
-    git clone https://github.com/YOUR-USERNAME/docs
-    cd docs
-    pip install --user -r requirements.txt
-    ```
-
-    - Running the docs server:
-
-    ```bash
-    mkdocs serve --dev-addr 0.0.0.0:8000
-    ```
-
-- Docker instructions:
-    - One-shot run:
-
-    ```bash
-    docker run -v `pwd`:/opt/app/ -w /opt/app/ -p 8000:8000 -it nikolaik/python-nodejs:python3.7-nodejs16 \
-      sh -c "pip install --user -r requirements.txt && \
-      /root/.local/bin/mkdocs build && \
-      npm ci && \
-      npm test && \
-      /root/.local/bin/mkdocs serve --dev-addr 0.0.0.0:8000"
-    ```
-
-After these commands, the current branch is accessible through your favorite browser at <http://localhost:8000>
-
-[![Deploys by Netlify](https://www.netlify.com/img/global/badges/netlify-color-bg.svg)](https://www.netlify.com/)
